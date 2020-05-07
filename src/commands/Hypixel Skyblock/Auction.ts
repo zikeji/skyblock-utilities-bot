@@ -45,7 +45,15 @@ export default class extends Command {
             quotedStringSupport: false,
             usage: '<username:string>',
             usageDelim: ' ',
+            extendedHelp: [
+            'List user\'s active auctions and set reminders.',
+            '',
+            'Examples ::',
+            'ah RealMinecraftIGN',
+        ].join('\n')
         });
+
+        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix} help auction\` for more instructions.`);
     }
 
 

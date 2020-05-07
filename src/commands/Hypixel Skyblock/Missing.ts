@@ -283,6 +283,8 @@ export default class Missing extends Command {
                 'missing RealMinecraftIGN Cucumber'
             ].join('\n')
         });
+
+        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix} help missing\` for more instructions.`);
     }
 
 

@@ -18,7 +18,15 @@ export default class BazaarCommand extends Command {
             quotedStringSupport: false,
             usage: '<item_name:...string>',
             usageDelim: ' ',
+            extendedHelp: [
+                'List the bazaar summary for an item.',
+                '',
+                'Examples ::',
+                'bz super egg',
+            ].join('\n')
         });
+
+        this.customizeResponse('item_name', message => `:no_entry: **|** You must supply the item name of the item you are checking! Run \`${message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix} help skills\` for more instructions.`);
     }
 
     async run(message: KlasaMessage, [itemName]: [string | null]): Promise<any> {
