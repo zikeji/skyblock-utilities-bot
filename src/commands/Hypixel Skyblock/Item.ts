@@ -70,8 +70,6 @@ export default class ItemCommand extends Command {
             embed.setFooter('We found more results. Please make your query more concise if your request is missing.');
         }
 
-        return message.send({
-            embed
-        });
+        return message.send(message.author, {embed});
     }
 };

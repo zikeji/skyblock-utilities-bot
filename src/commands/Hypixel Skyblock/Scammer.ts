@@ -62,7 +62,7 @@ export default class extends Command {
             embed
                 .setColor('#ff0000')
                 .setTitle(`${user.username} is a known scammer!`)
-                .setDescription(['**Caution!** This user was found on the scammer database!',
+                .setDescription(['**Caution!** This user was found in the scammer database!',
                     '',
                     '**Reason:**',
                     scammerList[user.uuid].reason,
@@ -73,7 +73,7 @@ export default class extends Command {
             embed
                 .setColor('#00ff00')
                 .setTitle(`${user.username} is not a known scammer.`)
-                .setDescription(['This user was not found on the scammer database.',
+                .setDescription(['This user was not found in the scammer database.',
                     '',
                     '**Please Note:**',
                     'This does not mean they are safe to trade with! It just means they are not a known scammer. Always use safe trading methods or get a trustworthy middleman.',

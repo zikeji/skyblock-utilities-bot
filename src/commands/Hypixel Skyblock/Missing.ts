@@ -408,7 +408,7 @@ export default class Missing extends Command {
             embed.setFooter(`Selected profile "${bestProfileTalisman.cuteName}" as it had the least missing accessories.`);
         }
 
-        return message.send(embed);
+        return message.send(message.author, {embed});
     }
 
     private static async parseProfileTalismans(cuteName: string, memberUuid: string, profile: SkyblockProfileResponse): Promise<ParseProfileTalismansResponse> {

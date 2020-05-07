@@ -152,7 +152,7 @@ export default class extends Command {
 
         embed.setDescription(description);
 
-        return message.send(embed);
+        return message.send(message.author, {embed});
     }
 
 

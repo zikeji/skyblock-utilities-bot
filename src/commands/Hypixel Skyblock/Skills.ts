@@ -136,7 +136,7 @@ export default class Skills extends Command {
         }
 
 
-        return message.send(embed);
+        return message.send(message.author, {embed});
     }
 
 

@@ -179,7 +179,7 @@ export default class extends Command {
 
         let currentIndex = 0;
         let reactionErrorDebounce: number = new Date().getTime() - 5000;
-        await reply.edit(`**Auctions for \`${user.username}\`**`, {
+        await reply.edit(`${message.author} **Auctions for \`${user.username}\`**`, {
             embed: await this.handleAuctionPage(auctionEmbedDataArray, currentIndex)
         });
         (async () => {
@@ -207,7 +207,7 @@ export default class extends Command {
                         currentIndex = auctionEmbedDataArray.length - 1;
                     }
 
-                    await reply.edit(`**Auctions for \`${user.username}\`**`, {
+                    await reply.edit(`${message.author} **Auctions for \`${user.username}\`**`, {
                         embed: await this.handleAuctionPage(auctionEmbedDataArray, currentIndex, reply)
                     });
                     break;
@@ -217,7 +217,7 @@ export default class extends Command {
                         currentIndex = 0;
                     }
 
-                    await reply.edit(`**Auctions for \`${user.username}\`**`, {
+                    await reply.edit(`${message.author} **Auctions for \`${user.username}\`**`, {
                         embed: await this.handleAuctionPage(auctionEmbedDataArray, currentIndex, reply)
                     });
                     break;

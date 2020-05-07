@@ -76,7 +76,7 @@ export default class BazaarCommand extends Command {
         embed.setDescription(description.join('\n'));
         embed.setFooter('Note: Information is based on the latest buy and sell orders in-game and may not be accurate.');
 
-        return message.send(embed);
+        return message.send(message.author, {embed});
     }
 
     private static getProduct(query: string) {
@@ -606,7 +606,7 @@ export default class BazaarCommand extends Command {
         {
             id: 'ENCHANTED_ACACIA_LOG',
             name: 'Enchanted Acacia Wood',
-            aliases: ['ENCHANTED_ACACIA',' ENCHANTED_ACACIA_WOOD', 'E_ACACIA', 'E_ACACIA_LOG', 'E_ACACIA_WOOD']
+            aliases: ['ENCHANTED_ACACIA', ' ENCHANTED_ACACIA_WOOD', 'E_ACACIA', 'E_ACACIA_LOG', 'E_ACACIA_WOOD']
         },
         {
             id: 'ENCHANTED_EGG',
