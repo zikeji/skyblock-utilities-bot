@@ -8,7 +8,7 @@ const client = new KlasaClient({
     prefixCaseInsensitive: true,
     noPrefixDM: true,
     production: process.env.NODE_ENV === 'production',
-    ownerID: '0',
+    // ownerID: '0',
     typing: false,
     // quicker reactions
     restTimeOffset: 100,
