@@ -27,7 +27,7 @@ export default class ItemCommand extends Command {
             ].join('\n')
         });
 
-        this.customizeResponse('query', message => `:no_entry: **|** You must supply a search query! Run \`${message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix} help item\` for more instructions.`);
+        this.customizeResponse('query', message => `:no_entry: **|** You must supply a search query! Run \`${message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix}help item\` for more instructions.`);
     }
 
 

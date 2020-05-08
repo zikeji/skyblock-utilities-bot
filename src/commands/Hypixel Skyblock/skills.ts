@@ -36,7 +36,7 @@ export default class Skills extends Command {
             ].join('\n')
         });
 
-        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix} help skills\` for more instructions.`);
+        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix}help skills\` for more instructions.`);
     }
 
 
