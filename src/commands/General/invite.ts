@@ -1,4 +1,5 @@
 import {Command, CommandStore, KlasaClient, KlasaMessage} from 'klasa';
+import {MessageEmbed} from "discord.js";
 
 export default class extends Command {
     constructor(client: KlasaClient, store: CommandStore, file: string[], directory: string) {
@@ -10,10 +11,14 @@ export default class extends Command {
     }
 
     async run(message: KlasaMessage) {
-        return message.send([
-            `My invite link: <${this.client.invite}>`,
-            '',
-            `The above invite link is generated requesting the minimum permissions required to run all of my current commands. :smile:`
-        ].join('\n'));
+        return message.send(
+            new MessageEmbed()
+                .setColor('#5f5ac6')
+                .setAuthor(`Invite SkyBlock Utilities to your server.`, this.client.user.avatarURL(), 'https://discordapp.com/oauth2/authorize?client_id=707857251536470067&permissions=347200&scope=bot')
+                .setDescription([
+                    `Thanks for showing interest in inviting my bot! You can invite it using the link below. Thank you for showing your support!`,
+                    '',
+                    '[Invite SkyBlock Utilities to your server!](https://discordapp.com/oauth2/authorize?client_id=707857251536470067&permissions=347200&scope=bot)'
+                ].join('\n')));
     }
 };
