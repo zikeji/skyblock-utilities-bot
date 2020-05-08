@@ -27,7 +27,7 @@ export default class extends Command {
     }
 
     private async updateDependencies(message: KlasaMessage) {
-        const {stderr, code} = await this.exec('npm ci');
+        const {stderr, code} = await this.exec('npm i --no-save');
         if (code !== 0 && stderr.length) throw stderr.trim();
         return message.channel.send(`:white_check_mark: Successfully updated dependencies.`);
     }
