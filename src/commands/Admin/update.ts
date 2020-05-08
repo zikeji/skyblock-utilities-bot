@@ -20,20 +20,20 @@ export default class extends Command {
     }
 
     private async compile(message: KlasaMessage) {
-        const {stderr, code} = await this.exec('npm run build');
+        const {stderr, code} = await this.exec('cd ../../ && npm run build');
         if (code !== 0 && stderr.length) throw stderr.trim();
         return message.channel.send(`:white_check_mark: Successfully compiled.`);
     }
 
     private async updateDependencies(message: KlasaMessage) {
-        const {stderr, code} = await this.exec('npm ci');
+        const {stderr, code} = await this.exec('cd ../../ && npm ci');
         if (code !== 0 && stderr.length) throw stderr.trim();
         return message.channel.send(`:white_check_mark: Successfully updated dependencies.`);
     }
 
     private async fetch(message: KlasaMessage, branch: string) {
-        await this.exec('git fetch');
-        const {stdout, stderr} = await exec(`git pull origin ${branch}`);
+        await this.exec('cd ../../ && git fetch');
+        const {stdout, stderr} = await exec(`cd ../../ && git pull origin ${branch}`);
 
         // If it's up to date, do nothing
         if (/already up[ \-]to[ \-]date/i.test(stdout)) throw `:white_check_mark: Up to date.`;
@@ -56,7 +56,7 @@ export default class extends Command {
     private async stash(message: KlasaMessage) {
         await message.send('Unsuccessful pull, stashing...');
         await sleep(1000);
-        const {stdout, stderr} = await this.exec(`git stash`);
+        const {stdout, stderr} = await this.exec(`cd ../../ && git stash`);
         if (!this.isSuccessfulStash(stdout + stderr)) {
             throw `Unsuccessful pull, stashing:\n\n\`\`\`prolog\n${[stdout || '✔', stderr || '✔'].join('\n-=-=-=-\n')}\`\`\``;
         }
@@ -66,12 +66,12 @@ export default class extends Command {
 
     private async checkout(message: KlasaMessage, branch: string) {
         await message.send(`Switching to ${branch}...`);
-        await this.exec(`git checkout ${branch}`);
+        await this.exec(`cd ../../ && git checkout ${branch}`);
         return message.send(`:white_check_mark: Switched to ${branch}.`);
     }
 
     private async isCurrentBranch(branch: string) {
-        const {stdout} = await this.exec('git symbolic-ref --short HEAD');
+        const {stdout} = await this.exec('cd ../../ && git symbolic-ref --short HEAD');
         return stdout === `refs/heads/${branch}\n` || stdout === `${branch}\n`;
     }
 
