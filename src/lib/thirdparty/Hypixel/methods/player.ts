@@ -1,5 +1,5 @@
 import {HypixelApiWrapper} from "../util/wrapper";
-import {cache} from "../../../cache";
+import {cache} from "../../../../cache";
 import {HypixelPlayer} from "../classes/Player";
 
 export class Player extends HypixelApiWrapper {

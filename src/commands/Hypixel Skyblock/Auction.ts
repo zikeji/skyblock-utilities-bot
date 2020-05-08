@@ -1,14 +1,14 @@
 import {Command, CommandStore, KlasaClient, KlasaMessage} from "klasa";
-import {HypixelApi} from "../../thirdparty/Hypixel";
+import {HypixelApi} from "../../lib/thirdparty/Hypixel";
 import {MessageEmbed, TextChannel} from "discord.js";
 import MinecraftTextJS from "minecraft-text-js";
 import {NBT} from "@xmcl/nbt";
 import * as prettyMilliseconds from "pretty-ms";
 import * as TurndownService from "turndown";
-import {AuctionItem} from "../../thirdparty/Hypixel/interfaces/SkyBlock/auction";
-import {UnifiedMojang} from "../../thirdparty/UnifiedMojang";
-import {UnifiedMojangResponse} from "../../thirdparty/UnifiedMojang/interfaces/response";
-import {RandomLoadingMessage} from "../../util/RandomLoadingMessage";
+import {AuctionItem} from "../../lib/thirdparty/Hypixel/interfaces/SkyBlock/auction";
+import {UnifiedMojang} from "../../lib/thirdparty/UnifiedMojang";
+import {UnifiedMojangResponse} from "../../lib/thirdparty/UnifiedMojang/interfaces/response";
+import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
 
 const turndownService = new TurndownService();
 

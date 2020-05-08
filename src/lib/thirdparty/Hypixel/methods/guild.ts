@@ -1,5 +1,5 @@
 import {HypixelApiWrapper} from "../util/wrapper";
-import {cache} from "../../../cache";
+import {cache} from "../../../../cache";
 import {HypixelGuildResponse} from "../interfaces/guild";
 
 export class Guild extends HypixelApiWrapper {

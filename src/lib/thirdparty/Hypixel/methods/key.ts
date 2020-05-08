@@ -1,5 +1,5 @@
 import {HypixelApiWrapper} from "../util/wrapper";
-import {cache} from "../../../cache";
+import {cache} from "../../../../cache";
 import {HypixelKeyResponse} from "../interfaces/key";
 
 export class Key extends HypixelApiWrapper {

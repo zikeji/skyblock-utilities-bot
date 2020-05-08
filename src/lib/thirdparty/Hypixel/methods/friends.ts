@@ -1,5 +1,5 @@
 import {HypixelApiWrapper} from "../util/wrapper";
-import {cache} from "../../../cache";
+import {cache} from "../../../../cache";
 import {HypixelFriendsResponse} from "../interfaces/friends";
 
 export class Friends extends HypixelApiWrapper {

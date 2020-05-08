@@ -1,4 +1,4 @@
-import {SkyblockUtilitiesClient} from "../lib/structures/SkyblockUtilitiesClient";
+import {SkyblockUtilitiesClient} from "../structures/SkyblockUtilitiesClient";
 
 export class RandomLoadingMessage {
     private static messages: string[] = [

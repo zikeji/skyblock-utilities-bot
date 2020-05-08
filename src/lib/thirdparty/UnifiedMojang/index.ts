@@ -1,5 +1,5 @@
 import {json} from 'web-request';
-import {cache} from "../../cache";
+import {cache} from "../../../cache";
 import {UnifiedMojangResponse} from "./interfaces/response";
 import {UnifiedMojangError} from "./interfaces/error";
 

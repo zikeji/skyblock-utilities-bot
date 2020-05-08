@@ -1,9 +1,9 @@
 import {json} from "web-request";
 import {cache} from "../../cache";
 import {Command, CommandStore, KlasaClient, KlasaMessage} from "klasa";
-import {UnifiedMojang} from "../../thirdparty/UnifiedMojang";
-import {UnifiedMojangResponse} from "../../thirdparty/UnifiedMojang/interfaces/response";
-import {RandomLoadingMessage} from "../../util/RandomLoadingMessage";
+import {UnifiedMojang} from "../../lib/thirdparty/UnifiedMojang";
+import {UnifiedMojangResponse} from "../../lib/thirdparty/UnifiedMojang/interfaces/response";
+import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
 import {MessageEmbed} from "discord.js";
 
 interface ScammerList {

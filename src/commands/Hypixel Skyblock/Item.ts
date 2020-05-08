@@ -1,8 +1,8 @@
 import {Command, CommandStore, KlasaClient, KlasaMessage} from "klasa";
-import {Craftlink} from "../../thirdparty/Craftlink";
+import {Craftlink} from "../../lib/thirdparty/Craftlink";
 import {MessageEmbed} from "discord.js";
-import {ItemsListResponse} from "../../thirdparty/Craftlink/interfaces/itemsList";
-import {RandomLoadingMessage} from "../../util/RandomLoadingMessage";
+import {ItemsListResponse} from "../../lib/thirdparty/Craftlink/interfaces/itemsList";
+import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
 
 
 export default class ItemCommand extends Command {

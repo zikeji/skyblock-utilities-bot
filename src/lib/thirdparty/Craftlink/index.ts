@@ -1,5 +1,5 @@
 import {post} from 'web-request';
-import {cache} from "../../cache";
+import {cache} from "../../../cache";
 import {ItemsListResponse} from "./interfaces/itemsList";
 import matchSorter from 'match-sorter';
 

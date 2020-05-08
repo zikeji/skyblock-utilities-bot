@@ -1,11 +1,11 @@
 import {Command, CommandStore, KlasaClient, KlasaMessage} from "klasa";
-import {HypixelApi} from "../../thirdparty/Hypixel";
-import {UnifiedMojang} from "../../thirdparty/UnifiedMojang";
-import {UnifiedMojangResponse} from "../../thirdparty/UnifiedMojang/interfaces/response";
-import {HypixelPlayer} from "../../thirdparty/Hypixel/classes/Player";
-import {NoPlayerDataError} from "../../thirdparty/Hypixel/methods/player";
-import {SkyblockProfileResponse} from "../../thirdparty/Hypixel/interfaces/SkyBlock/profile";
-import {RandomLoadingMessage} from "../../util/RandomLoadingMessage";
+import {HypixelApi} from "../../lib/thirdparty/Hypixel";
+import {UnifiedMojang} from "../../lib/thirdparty/UnifiedMojang";
+import {UnifiedMojangResponse} from "../../lib/thirdparty/UnifiedMojang/interfaces/response";
+import {HypixelPlayer} from "../../lib/thirdparty/Hypixel/classes/Player";
+import {NoPlayerDataError} from "../../lib/thirdparty/Hypixel/methods/player";
+import {SkyblockProfileResponse} from "../../lib/thirdparty/Hypixel/interfaces/SkyBlock/profile";
+import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
 import {NBT} from "@xmcl/nbt";
 import * as TurndownService from "turndown";
 import MinecraftTextJS from "minecraft-text-js";

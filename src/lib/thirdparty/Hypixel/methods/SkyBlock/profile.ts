@@ -1,5 +1,5 @@
 import {HypixelApiWrapper} from "../../util/wrapper";
-import {cache} from "../../../../cache";
+import {cache} from "../../../../../cache";
 import {SkyblockProfileResponse} from "../../interfaces/SkyBlock/profile";
 
 export class Profile extends HypixelApiWrapper {

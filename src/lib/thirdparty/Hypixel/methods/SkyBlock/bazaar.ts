@@ -1,5 +1,5 @@
 import {HypixelApiWrapper} from "../../util/wrapper";
-import {cache} from "../../../../cache";
+import {cache} from "../../../../../cache";
 import {ProductResponse} from "../../interfaces/SkyBlock/bazaar";
 
 export class Bazaar extends HypixelApiWrapper {

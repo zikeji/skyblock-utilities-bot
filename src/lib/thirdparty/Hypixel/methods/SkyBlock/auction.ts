@@ -1,5 +1,5 @@
 import {HypixelApiWrapper} from "../../util/wrapper";
-import {cache} from "../../../../cache";
+import {cache} from "../../../../../cache";
 import {AuctionResponse} from "../../interfaces/SkyBlock/auction";
 
 export class Auction extends HypixelApiWrapper {

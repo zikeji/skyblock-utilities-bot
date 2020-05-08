@@ -1,13 +1,13 @@
 import {Command, CommandStore, KlasaClient, KlasaMessage} from "klasa";
-import {HypixelApi} from "../../thirdparty/Hypixel";
+import {HypixelApi} from "../../lib/thirdparty/Hypixel";
 import {MessageEmbed} from "discord.js";
-import {UnifiedMojang} from "../../thirdparty/UnifiedMojang";
-import {UnifiedMojangResponse} from "../../thirdparty/UnifiedMojang/interfaces/response";
-import {HypixelPlayer} from "../../thirdparty/Hypixel/classes/Player";
-import {NoPlayerDataError} from "../../thirdparty/Hypixel/methods/player";
-import {SkyblockProfile, SkyblockProfileResponse} from "../../thirdparty/Hypixel/interfaces/SkyBlock/profile";
-import {RandomLoadingMessage} from "../../util/RandomLoadingMessage";
-import {SlayerLeveling} from "../../util/Hypixel/SkyBlock/SlayerLeveling";
+import {UnifiedMojang} from "../../lib/thirdparty/UnifiedMojang";
+import {UnifiedMojangResponse} from "../../lib/thirdparty/UnifiedMojang/interfaces/response";
+import {HypixelPlayer} from "../../lib/thirdparty/Hypixel/classes/Player";
+import {NoPlayerDataError} from "../../lib/thirdparty/Hypixel/methods/player";
+import {SkyblockProfile, SkyblockProfileResponse} from "../../lib/thirdparty/Hypixel/interfaces/SkyBlock/profile";
+import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
+import {SlayerLeveling} from "../../lib/util/Hypixel/SkyBlock/SlayerLeveling";
 
 
 export default class extends Command {
