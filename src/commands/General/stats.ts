@@ -37,7 +37,7 @@ export default class extends Command {
 
                 .addField('Uptime', `${Duration.toNow(Date.now() - (process.uptime() * 1000))}`, true)
                 .addField('Memory Usage', `${memory.toFixed(2)} MB`, true)
-                .addField("TCR", this.client.settings.get('counter.total').toLocaleString(), true)
+                .addField("TCR", this.client.settings.get('counter.total') ? this.client.settings.get('counter.total').toLocaleString() : 0, true)
 
                 .addField('Cluster', `${this.client.shard.id + 1}/${this.client.shard.clusterCount}`, true)
                 .addField('Shard', `${message.guild ? message.guild.shardID + 1 : 1}/${this.client.shard.shardCount}`, true)
