@@ -121,13 +121,8 @@ export default class Skills extends Command {
         if (bestProfileSkills.api) {
             embed
                 .addField('**<:carpentry:707343214603927696>  Carpentry**', bestProfileSkills.carpentry.level, true)
-                .addField('**<:runecrafting:707343381151481857>  Runecrafting**', bestProfileSkills.runecrafting.level, true);
-            if (bestProfileSkills.taming.level > 0) {
-                embed
-                    .addField('**<:taming:707429610991911002>  Taming**', bestProfileSkills.taming.level, true);
-            } else {
-                embed.setFooter('Taming skill data is not available in the API yet.');
-            }
+                .addField('**<:runecrafting:707343381151481857>  Runecrafting**', bestProfileSkills.runecrafting.level, true)
+                .addField('**<:taming:707429610991911002>  Taming**', bestProfileSkills.taming.level, true);
         } else {
             embed
                 .addField('Note', 'Skills API was not enabled on this profile so we used the achievements data. This data reflects the best levels across all profiles and may not be accurate for this profile.');
