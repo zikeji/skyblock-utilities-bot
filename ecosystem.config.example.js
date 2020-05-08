@@ -1,9 +1,9 @@
 module.exports = {
   apps : [{
-    name: 'Skyblock Utilities',
-    script: 'dist/src/index.js',
+    name: 'SBUBot',
+    script: 'index.js',
+    cwd: '/path/to/dist',
     args: '',
-    instances: 1,
     autorestart: true,
     watch: false,
     max_memory_restart: '512M',
