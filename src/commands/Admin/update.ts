@@ -9,7 +9,8 @@ export default class extends Command {
     constructor(client: KlasaClient, store: CommandStore, file: string[], directory: string) {
         super(client, store, file, directory, {
             permissionLevel: 10,
-            usage: '[branch:string]'
+            usage: '[branch:string]',
+            deletable: false
         });
     }
 
