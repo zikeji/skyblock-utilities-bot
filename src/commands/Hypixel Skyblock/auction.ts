@@ -37,8 +37,6 @@ export default class extends Command {
             name: "auction",
             enabled: true,
             runIn: ['text', 'dm'],
-            cooldown: 5,
-            deletable: false,
             aliases: ['ah'],
             requiredPermissions: ['READ_MESSAGE_HISTORY', 'EMBED_LINKS', 'USE_EXTERNAL_EMOJIS', 'ADD_REACTIONS'],
             description: 'List user\'s active auctions and set reminders.',

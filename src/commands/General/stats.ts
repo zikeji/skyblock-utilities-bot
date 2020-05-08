@@ -5,7 +5,6 @@ import {MessageEmbed, version as discordVersion} from "discord.js";
 export default class extends Command {
     constructor(client: KlasaClient, store: CommandStore, file: string[], directory: string) {
         super(client, store, file, directory, {
-            guarded: false,
             runIn: ['text', 'dm'],
             requiredPermissions: ['EMBED_LINKS'],
             description: language => language.get('COMMAND_STATS_DESCRIPTION')

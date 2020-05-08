@@ -20,8 +20,6 @@ export default class extends Command {
             name: "scammer",
             enabled: true,
             runIn: ['text', 'dm'],
-            cooldown: 5,
-            deletable: false,
             aliases: ['scmr'],
             requiredPermissions: ['EMBED_LINKS', 'USE_EXTERNAL_EMOJIS'],
             description: 'Check a user against the SkyBlockZ Discord\'s scammer database.',

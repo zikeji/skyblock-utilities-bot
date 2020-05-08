@@ -10,8 +10,6 @@ export default class BazaarCommand extends Command {
             name: "bazaar",
             enabled: true,
             runIn: ['text', 'dm'],
-            cooldown: 5,
-            deletable: false,
             aliases: ['bz'],
             requiredPermissions: ['EMBED_LINKS', 'USE_EXTERNAL_EMOJIS'],
             description: 'List bazaar summary for item.',

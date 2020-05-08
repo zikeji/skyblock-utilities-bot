@@ -11,8 +11,6 @@ export default class ItemCommand extends Command {
             name: "item",
             enabled: true,
             runIn: ['text', 'dm'],
-            cooldown: 5,
-            deletable: false,
             aliases: ['itemlookup'],
             requiredPermissions: ['EMBED_LINKS', 'USE_EXTERNAL_EMOJIS'],
             description: "Lookup an item's average price on auctions.craftlink.xyz.",

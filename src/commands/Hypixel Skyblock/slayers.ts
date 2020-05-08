@@ -16,8 +16,6 @@ export default class extends Command {
             name: "slayers",
             enabled: true,
             runIn: ['text', 'dm'],
-            cooldown: 5,
-            deletable: false,
             aliases: ['slayer', 'slyr'],
             requiredPermissions: ['EMBED_LINKS', 'USE_EXTERNAL_EMOJIS'],
             description: 'List user\'s slayer levels.',

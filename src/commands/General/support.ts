@@ -8,8 +8,6 @@ export default class extends Command {
         super(client, store, file, directory, {
             name: 'support',
             aliases: ['contact', 'feedback', 'suggest', 'suggestions', 'complaint', 'complaints', 'issue', 'issues'],
-            guarded: false,
-            permissionLevel: 0,
             runIn: ['text', 'dm'],
             description: 'Information on how to get support.'
         });

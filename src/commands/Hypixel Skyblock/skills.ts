@@ -16,8 +16,6 @@ export default class Skills extends Command {
             name: "skills",
             enabled: true,
             runIn: ['text', 'dm'],
-            cooldown: 5,
-            deletable: false,
             bucket: 1,
             aliases: ['skill', 'skl', 'skillcheck', 'skillaverage'],
             requiredPermissions: ['EMBED_LINKS', 'USE_EXTERNAL_EMOJIS'],

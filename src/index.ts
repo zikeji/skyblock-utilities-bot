@@ -26,7 +26,14 @@ const sharder = new BotShardingManager(join(__dirname, "main"), {
         prefixCaseInsensitive: true,
         noPrefixDM: true,
         production: process.env.NODE_ENV === 'production',
-        // ownerID: '0',
+        ownerID: '185787844843798528',
+        pieceDefaults: {
+            commands: {
+                deletable: true,
+                guarded: true,
+                cooldown: 3
+            }
+        },
         typing: false,
         // quicker reactions
         restTimeOffset: 100,

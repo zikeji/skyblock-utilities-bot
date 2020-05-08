@@ -4,10 +4,8 @@ export default class extends Command {
     constructor(client: KlasaClient, store: CommandStore, file: string[], directory: string) {
         super(client, store, file, directory, {
             aliases: ['setPrefix'],
-            cooldown: 5,
-            description: 'Change the command prefix the bot uses in your server.',
-            permissionLevel: 0,
             runIn: ['text'],
+            description: 'Change the command prefix the bot uses in your server.',
             usage: '[reset|prefix:str{1,10}]'
         });
     }

@@ -15,7 +15,6 @@ export default class extends Command {
     constructor(client: KlasaClient, store: CommandStore, file: string[], directory: string) {
         super(client, store, file, directory, {
             aliases: ['commands', 'cmd', 'cmds'],
-            guarded: true,
             description: (language) => language.get('COMMAND_HELP_DESCRIPTION'),
             usage: '(Command:command)'
         });

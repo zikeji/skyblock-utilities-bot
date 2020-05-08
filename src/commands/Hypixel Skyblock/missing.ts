@@ -265,8 +265,6 @@ export default class Missing extends Command {
             name: "missing",
             enabled: true,
             runIn: ['text', 'dm'],
-            cooldown: 5,
-            deletable: false,
             aliases: ['missingaccessories', 'missingtalismans'],
             requiredPermissions: ['EMBED_LINKS', 'USE_EXTERNAL_EMOJIS'],
             description: 'List a user\'s missing, unnecessary, or duplicate accessories.',

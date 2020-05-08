@@ -7,8 +7,6 @@ export default class extends Command {
         super(client, store, file, directory, {
             name: 'donate',
             aliases: ['coffee'],
-            guarded: false,
-            permissionLevel: 0,
             runIn: ['text', 'dm'],
             description: 'Information on feeding a tired developer coffee.'
         });
