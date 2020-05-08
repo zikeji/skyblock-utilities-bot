@@ -1,8 +1,11 @@
-import {KlasaClient, Task, TaskStore} from "klasa";
+import {Task, TaskStore} from "klasa";
 import * as prettyMilliseconds from "pretty-ms";
+import {SkyblockUtilitiesClient} from "../lib/structures/SkyblockUtilitiesClient";
 
 export default class SendAuctionReminder extends Task {
-    constructor(client: KlasaClient, store: TaskStore, file: string[], directory: string) {
+    public readonly client: SkyblockUtilitiesClient;
+
+    constructor(client: SkyblockUtilitiesClient, store: TaskStore, file: string[], directory: string) {
         super(client, store, file, directory, {
             name: 'SendAuctionReminder',
             enabled: true
