@@ -4,3 +4,4 @@ dist
 gen
 node_modules
 /test.docker.bat
+ecosystem.config.js
