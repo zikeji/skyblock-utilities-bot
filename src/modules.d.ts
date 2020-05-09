@@ -12,6 +12,7 @@ declare namespace NodeJS {
         REDIS_DB: string;
         HYPIXEL_KEY: string;
         BOT_TOKEN: string;
+        BOATS_API_KEY: string;
         COMMAND_LOGGING: "yes" | "no";
         QUERY_LOGGING: "yes" | "no";
     }
