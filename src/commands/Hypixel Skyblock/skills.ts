@@ -109,7 +109,6 @@ export default class Skills extends Command {
             .setThumbnail(`https://visage.surgeplay.com/full/128/${user.uuid}`);
 
         embed
-            .setDescription(`**Average Skill Level** (w/o progress)\n${bestProfileSkills.average}  (${bestProfileSkills.averageWithoutProgress})`)
             .addField('**<:farming:707342724453498880>  Farming**', bestProfileSkills.farming.level, true)
             .addField('**<:mining:707342724478664804>  Mining**', bestProfileSkills.mining.level, true)
             .addField('**<:combat:707342724726128781>  Combat**', bestProfileSkills.combat.level, true)
@@ -120,17 +119,17 @@ export default class Skills extends Command {
 
         if (bestProfileSkills.api) {
             embed
+                .setDescription(`**Average Skill Level** (w/o progress)\n${bestProfileSkills.average}  (${bestProfileSkills.averageWithoutProgress})`)
                 .addField('**<:carpentry:707343214603927696>  Carpentry**', bestProfileSkills.carpentry.level, true)
                 .addField('**<:runecrafting:707343381151481857>  Runecrafting**', bestProfileSkills.runecrafting.level, true)
-                .addField('**<:taming:707429610991911002>  Taming**', bestProfileSkills.taming.level, true);
+                .addField('**<:taming:707429610991911002>  Taming**', bestProfileSkills.taming.level, true)
+                .setFooter('Average does not include carpentry & runecrafting.');
         } else {
             embed
-                .addField('Note', 'Skills API was not enabled on this profile so we used the achievements data. This data reflects the best levels across all profiles and may not be accurate for this profile.');
+                .addField('Note', 'Skills API was disabled on this profile so we used the achievements data. This data reflects the best levels across all profiles and may not be accurate for this profile. Please enable skills API to get skill average and accurate data.');
         }
 
 
         return message.send(message.author, {embed});
     }
-
-
 };

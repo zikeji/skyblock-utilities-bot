@@ -58,8 +58,8 @@ export class SkyblockSkills {
                 taming: SkillLeveling.getLevelByXp(0, false)
             };
         }
-        out.average = Math.round(((out.farming.levelProgress + out.mining.levelProgress + out.combat.levelProgress + out.foraging.levelProgress + out.fishing.levelProgress + out.enchanting.levelProgress + out.alchemy.levelProgress) / 7) * 100) / 100;
-        out.averageWithoutProgress = Math.round(((out.farming.level + out.mining.level + out.combat.level + out.foraging.level + out.fishing.level + out.enchanting.level + out.alchemy.level) / 7) * 100) / 100;
+        out.average = Math.round(((out.farming.levelProgress + out.mining.levelProgress + out.combat.levelProgress + out.foraging.levelProgress + out.fishing.levelProgress + out.enchanting.levelProgress + out.alchemy.levelProgress + out.taming.levelProgress) / 8) * 100) / 100;
+        out.averageWithoutProgress = Math.round(((out.farming.level + out.mining.level + out.combat.level + out.foraging.level + out.fishing.level + out.enchanting.level + out.alchemy.level + out.taming.level) / 8) * 100) / 100;
         return out;
     }
 }
