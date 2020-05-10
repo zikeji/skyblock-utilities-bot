@@ -27,7 +27,7 @@ export default class extends Command {
 
         return message.send(
             new MessageEmbed()
-                .setAuthor(`SkyBlock Utilities v${botVersion} - Statistics`, this.client.user.displayAvatarURL())
+                .setAuthor(`SkyBlockZ Utilities v${botVersion} - Statistics`, this.client.user.displayAvatarURL())
                 .setColor('#5f5ac6')
                 .setTimestamp()
                 .addField('Users', `${users.toLocaleString()}`, true)

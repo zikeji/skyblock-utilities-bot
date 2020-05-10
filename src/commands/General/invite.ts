@@ -6,7 +6,7 @@ export default class extends Command {
         super(client, store, file, directory, {
             name: 'invite',
             runIn: ['text', 'dm'],
-            description: 'Displays the invite link for SkyBlock Utilities.'
+            description: 'Displays the invite link for SkyBlockZ Utilities.'
         });
     }
 
@@ -14,11 +14,11 @@ export default class extends Command {
         return message.send(
             new MessageEmbed()
                 .setColor('#5f5ac6')
-                .setAuthor(`Invite SkyBlock Utilities to your server.`, this.client.user.avatarURL(), 'https://discordapp.com/oauth2/authorize?client_id=707857251536470067&permissions=347200&scope=bot')
+                .setAuthor(`Invite SkyBlockZ Utilities to your server.`, this.client.user.avatarURL(), 'https://discordapp.com/oauth2/authorize?client_id=707857251536470067&permissions=347200&scope=bot')
                 .setDescription([
                     `Thanks for showing interest in inviting my bot! You can invite it using the link below. Thank you for showing your support!`,
                     '',
-                    '[Invite SkyBlock Utilities to your server!](https://discordapp.com/oauth2/authorize?client_id=707857251536470067&permissions=347200&scope=bot)'
+                    '[Invite SkyBlockZ Utilities to your server!](https://discordapp.com/oauth2/authorize?client_id=707857251536470067&permissions=347200&scope=bot)'
                 ].join('\n')));
     }
 };

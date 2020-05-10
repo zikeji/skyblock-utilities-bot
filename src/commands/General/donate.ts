@@ -17,7 +17,7 @@ export default class extends Command {
             new MessageEmbed()
                 .setColor('#FF5E5B')
                 .setThumbnail('https://uploads-ssl.webflow.com/5c14e387dab576fe667689cf/5ca5bf1dff3c03fbf7cc9b3c_Kofi_logo_RGB_rounded-p-500.png')
-                .setTitle(`Support SkyBlock Utilities`)
+                .setTitle(`Support SkyBlockZ Utilities`)
                 .setURL('https://ko-fi.com/zikeji')
                 .setDescription([
                     `While I'm more than capable of supporting myself, if you'd like to support my work you can [buy me a coffee](https://ko-fi.com/zikeji)!`,
