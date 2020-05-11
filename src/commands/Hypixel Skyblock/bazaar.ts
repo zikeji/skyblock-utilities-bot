@@ -3,6 +3,7 @@ import {HypixelApi} from "../../lib/thirdparty/Hypixel";
 import {MessageEmbed} from "discord.js";
 import {ProductResponse} from "../../lib/thirdparty/Hypixel/interfaces/SkyBlock/bazaar";
 import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
+import {AbbreviateNumber} from "../../lib/util/AbbreviateNumber";
 
 export default class BazaarCommand extends Command {
     constructor(client: KlasaClient, store: CommandStore, file: string[], directory: string) {
@@ -54,8 +55,8 @@ export default class BazaarCommand extends Command {
             const buyPrice = productInfo.sell_summary.length === 0 ? 'N/A' : Math.round(productInfo.sell_summary[0].pricePerUnit * 10) / 10;
 
             description.push(`**Buy price:** ${buyPrice.toLocaleString()} coins`);
-            description.push(`${BazaarCommand.AbbreviateNumber(productInfo.quick_status.sellVolume)} in ${productInfo.quick_status.sellOrders} offers`);
-            description.push(`${BazaarCommand.AbbreviateNumber(productInfo.quick_status.sellMovingWeek)} insta-buys in 7d`);
+            description.push(`${AbbreviateNumber(productInfo.quick_status.sellVolume)} in ${productInfo.quick_status.sellOrders} offers`);
+            description.push(`${AbbreviateNumber(productInfo.quick_status.sellMovingWeek)} insta-buys in 7d`);
         }
         description.push('');
 
@@ -67,8 +68,8 @@ export default class BazaarCommand extends Command {
             const sellPrice = productInfo.buy_summary.length === 0 ? 'N/A' : Math.round(productInfo.buy_summary[0].pricePerUnit * 10) / 10;
 
             description.push(`**Sell price:** ${sellPrice.toLocaleString()} coins`);
-            description.push(`${BazaarCommand.AbbreviateNumber(productInfo.quick_status.buyVolume)} in ${productInfo.quick_status.buyOrders} orders`);
-            description.push(`${BazaarCommand.AbbreviateNumber(productInfo.quick_status.buyMovingWeek)} insta-sells in 7d`);
+            description.push(`${AbbreviateNumber(productInfo.quick_status.buyVolume)} in ${productInfo.quick_status.buyOrders} orders`);
+            description.push(`${AbbreviateNumber(productInfo.quick_status.buyMovingWeek)} insta-sells in 7d`);
         }
 
         embed.setDescription(description.join('\n'));
@@ -1008,24 +1009,4 @@ export default class BazaarCommand extends Command {
         }
     ];
 
-    private static TruncateDecimals(value, digits: number) {
-        const re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),
-            m = value.toString().match(re);
-        return m ? parseFloat(m[1]) : value.valueOf();
-    }
-
-    private static SI_SYMBOL = ["", "K", "M", "G", "T", "P", "E"];
-
-    private static AbbreviateNumber(number: number) {
-        const tier = Math.log10(number) / 3 | 0;
-
-        if (tier == 0) return number;
-
-        const suffix = BazaarCommand.SI_SYMBOL[tier];
-        const scale = Math.pow(10, tier * 3);
-
-        const scaled = number / scale;
-
-        return scaled < 10 ? BazaarCommand.TruncateDecimals(scaled, 1) + suffix : BazaarCommand.TruncateDecimals(scaled, 0) + suffix;
-    }
 };

@@ -8,6 +8,7 @@ import {NoPlayerDataError} from "../../lib/thirdparty/Hypixel/methods/player";
 import {SkyblockProfile, SkyblockProfileResponse} from "../../lib/thirdparty/Hypixel/interfaces/SkyBlock/profile";
 import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
 import {SkillData, SkyblockSkills} from "../../lib/util/Hypixel/SkyBlock/Skills";
+import {AbbreviateNumber} from "../../lib/util/AbbreviateNumber";
 
 
 export default class Skills extends Command {
@@ -108,27 +109,40 @@ export default class Skills extends Command {
             .setAuthor(`${user.username} on "${cuteName}"`, `https://visage.surgeplay.com/face/128/${user.uuid}`, `https://sky.lea.moe/stats/${user.username}/${cuteName}`)
             .setThumbnail(`https://visage.surgeplay.com/full/128/${user.uuid}`);
 
-        embed
-            .addField('**<:farming:707342724453498880>  Farming**', bestProfileSkills.farming.level, true)
-            .addField('**<:mining:707342724478664804>  Mining**', bestProfileSkills.mining.level, true)
-            .addField('**<:combat:707342724726128781>  Combat**', bestProfileSkills.combat.level, true)
-            .addField('**<:foraging:707342894033272913>  Foraging**', bestProfileSkills.foraging.level, true)
-            .addField('**<:fishing:707343039688867870>  Fishing**', bestProfileSkills.fishing.level, true)
-            .addField('**<:enchanting:707343114179969095>  Enchanting**', bestProfileSkills.enchanting.level, true)
-            .addField('**<:alchemy:707343474680135690>  Alchemy**', bestProfileSkills.alchemy.level, true);
-
         if (bestProfileSkills.api) {
             embed
-                .setDescription(`**Average Skill Level** (w/o progress)\n${bestProfileSkills.average}  (${bestProfileSkills.averageWithoutProgress})`)
-                .addField('**<:carpentry:707343214603927696>  Carpentry**', bestProfileSkills.carpentry.level, true)
-                .addField('**<:runecrafting:707343381151481857>  Runecrafting**', bestProfileSkills.runecrafting.level, true)
-                .addField('**<:taming:707429610991911002>  Taming**', bestProfileSkills.taming.level, true)
-                .setFooter('Average does not include Carpentry & Runecrafting.');
-        } else {
-            embed
-                .addField('Note', 'Skills API was disabled on this profile so we used the achievements data. This data reflects the best levels across all profiles and may not be accurate for this profile. Please enable skills API to get skill average and accurate data.');
+                .setDescription(`**Average Skill Level** (w/o progress)\n${bestProfileSkills.average}  (${bestProfileSkills.averageWithoutProgress})`);
         }
 
+        for (const skill of [
+            ['farming', 'Farming', '<:farming:707342724453498880>'],
+            ['mining', 'Mining', '<:mining:707342724478664804>'],
+            ['combat', 'Combat', '<:combat:707342724726128781>'],
+            ['foraging', 'Foraging', '<:foraging:707342894033272913>'],
+            ['fishing', 'Fishing', '<:fishing:707343039688867870>'],
+            ['enchanting', 'Enchanting', '<:enchanting:707343114179969095>'],
+            ['alchemy', 'Alchemy', '<:alchemy:707343474680135690>'],
+            ['carpentry', 'Carpentry', '<:carpentry:707343214603927696>'],
+            ['runecrafting', 'Runecrafting', '<:runecrafting:707343381151481857>'],
+            ['taming', 'Taming', '<:taming:707429610991911002>'],
+        ]) {
+            if (bestProfileSkills.api) {
+                embed.addField(`**${skill[2]}  ${skill[1]}**`, [
+                    `**Level ${bestProfileSkills[skill[0]].level}**`,
+                    bestProfileSkills[skill[0]].xpForNext !== Infinity ?
+                        `${Math.round((bestProfileSkills[skill[0]].progress * 100) * 100) / 100}% progress\n${AbbreviateNumber(bestProfileSkills[skill[0]].xpCurrent)} / ${AbbreviateNumber(bestProfileSkills[skill[0]].xpForNext)} XP` : 'Max Level',
+
+                ].join('\n'), true);
+            } else if (['carpentry', 'runecrafting', 'taming'].indexOf(skill[0]) === -1) {
+                embed.addField(`**${skill[2]}  ${skill[1]}**`, bestProfileSkills[skill[0]].level, true);
+            }
+        }
+
+        if (bestProfileSkills.api) {
+            embed.setFooter('Average does not include Carpentry & Runecrafting.');
+        } else {
+            embed.setFooter('Please enable skills API to get skill average and accurate data.');
+        }
 
         return message.send(message.author, {embed});
     }
