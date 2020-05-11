@@ -123,7 +123,7 @@ export default class Skills extends Command {
                 .addField('**<:carpentry:707343214603927696>  Carpentry**', bestProfileSkills.carpentry.level, true)
                 .addField('**<:runecrafting:707343381151481857>  Runecrafting**', bestProfileSkills.runecrafting.level, true)
                 .addField('**<:taming:707429610991911002>  Taming**', bestProfileSkills.taming.level, true)
-                .setFooter('Average does not include carpentry & runecrafting.');
+                .setFooter('Average does not include Carpentry & Runecrafting.');
         } else {
             embed
                 .addField('Note', 'Skills API was disabled on this profile so we used the achievements data. This data reflects the best levels across all profiles and may not be accurate for this profile. Please enable skills API to get skill average and accurate data.');
