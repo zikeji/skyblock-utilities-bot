@@ -390,7 +390,7 @@ export default class BazaarCommand extends Command {
         {
             id: 'SUPER_COMPACTOR_3000',
             name: 'Super Compactor 3000',
-            aliases: ['SC3K']
+            aliases: ['SC3K', 'SUPER_COMPACTOR', 'SUPER_COMPACTER', 'SUPER_COMPACTER_3000']
         },
         {
             id: 'ENCHANTED_IRON',
