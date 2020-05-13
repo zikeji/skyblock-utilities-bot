@@ -13,6 +13,7 @@ declare namespace NodeJS {
         HYPIXEL_KEY: string;
         BOT_TOKEN: string;
         BOATS_API_KEY: string;
+        TOPGG_API_TOKEN: string;
         COMMAND_LOGGING: "yes" | "no";
         QUERY_LOGGING: "yes" | "no";
     }

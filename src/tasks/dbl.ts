@@ -10,10 +10,12 @@ export default class extends Task {
 
         let [users, guilds] = [0, 0];
         const shardCount: number = this.client.shard.shardCount;
+        const shardCounts: number[] = [];
         const results = await this.client.shard.broadcastEval(`[this.guilds.cache.reduce((prev, val) => val.memberCount + prev, 0), this.guilds.cache.size]`);
         for (const result of results) {
             users += result[0];
             guilds += result[1];
+            shardCounts.push(result[1]);
         }
 
         if (process.env.BOATS_API_KEY) {
@@ -28,6 +30,23 @@ export default class extends Task {
             });
             if (boatsResponse.error) {
                 this.client.console.error(`${this.header} Error submitting to discord.boats: ${boatsResponse.message}`)
+            }
+        }
+
+        if (process.env.TOPGG_API_TOKEN) {
+            const topGgResponse = await json<{error?: string;}>(`https://top.gg/api/bots/707857251536470067/stats`, { // ${this.client.user.id}
+                method: 'POST',
+                headers: {
+                    Authorization: process.env.TOPGG_API_TOKEN
+                },
+                json: true,
+                body: {
+                    shards: shardCounts,
+                    shard_count: shardCount
+                }
+            });
+            if (topGgResponse.error) {
+                this.client.console.error(`${this.header} Error submitting to top.gg: ${topGgResponse.error}`)
             }
         }
 
