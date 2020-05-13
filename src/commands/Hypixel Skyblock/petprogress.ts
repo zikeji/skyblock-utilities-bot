@@ -106,7 +106,7 @@ export default class extends Command {
                 description.push(`You have ${progress} ${pet.goalType}, you need ${pet.nextGoal - progress} more until you earn the **${pet.emoji} ${pet.nextRarity} ${pet.name}**!`);
             } else if (pet.nextRarity && pet.nextGoal) {
                 // earned a pet, has a new pet level
-                description.push(`You've earned the **${pet.emoji} ${pet.rarity} ${pet.name}**.\nYou have ${progress} ${pet.goalType}, you need ${pet.nextGoal - progress} more until you unlock the **${pet.emoji} ${pet.nextRarity} ${pet.name}**!`);
+                description.push(`You've earned the **${pet.emoji} ${pet.rarity} ${pet.name}**.\nYou have ${progress} ${pet.goalType}, you need ${pet.nextGoal - progress} more until you earn the **${pet.emoji} ${pet.nextRarity} ${pet.name}**!`);
             } else {
                 description.push(`You've earned the **${pet.emoji} ${pet.rarity} ${pet.name}**!\nYou have ${progress} ${pet.goalType}, you've unlocked the maximum tier pet in this milestone!`);
             }
