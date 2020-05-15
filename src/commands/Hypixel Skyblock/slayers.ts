@@ -111,6 +111,7 @@ export default class extends Command {
 
         let description = [];
         let totalXp = 0;
+        let totalSpent = 0;
 
         for (const field of [
             {name: 'Zombie', key: 'zombie', 'emoji': '<:revenant:707357810526257253>'},
@@ -132,19 +133,36 @@ export default class extends Command {
             if (totalKills > 0) {
                 description.push('');
                 description.push('Kills ::');
-                for (const tier of [['I', 'boss_kills_tier_0'], ['II', 'boss_kills_tier_1'], ['III', 'boss_kills_tier_2'], ['IV', 'boss_kills_tier_3']]) {
-                    if (bestProfile.members[user.uuid].slayer_bosses[field.key][tier[1]]) {
-                        description.push(`Tier ${tier[0].padEnd(3)} - ${bestProfile.members[user.uuid].slayer_bosses[field.key][tier[1]]}`)
+                let spent = 0;
+                for (const o of [
+                    {tier: 'I', key: 'boss_kills_tier_0', cost: 100},
+                    {tier: 'II', key: 'boss_kills_tier_1', cost: 2000},
+                    {tier: 'III', key: 'boss_kills_tier_2', cost: 10000},
+                    {tier: 'IV', key: 'boss_kills_tier_3', cost: 50000}
+                ]) {
+                    if (bestProfile.members[user.uuid].slayer_bosses[field.key][o.key]) {
+                        description.push(`Tier ${o.tier.padEnd(3)} - ${bestProfile.members[user.uuid].slayer_bosses[field.key][o.key]}`);
+                        spent += bestProfile.members[user.uuid].slayer_bosses[field.key][o.key] * o.cost;
                     }
                 }
+                totalSpent += spent;
+
                 description.push(`Total    - ${totalKills}`);
+                description.push('');
+                description.push('Spent ::');
+                description.push(`${spent.toLocaleString()} coins`);
             }
             description.push('```');
         }
 
-        description.push('**<:experience_bottle:707420813682409482>  Total Slayer XP**');
+        description.push('**<:experience_bottle:707420813682409482>  Total XP**');
         description.push('```');
         description.push(`${totalXp.toLocaleString()} XP`);
+        description.push('```');
+
+        description.push('**<:gold_nugget:710937757152706661>  Total Spent**');
+        description.push('```');
+        description.push(`${totalSpent.toLocaleString()} coins`);
         description.push('```');
 
         embed.setDescription(description);
