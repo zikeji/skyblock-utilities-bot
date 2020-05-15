@@ -2,7 +2,7 @@ import {Client, KlasaClientOptions} from "klasa";
 
 require('./schemas/defaultClientSchema');
 
-export class SkyblockUtilitiesClient extends Client {
+export class SkyBlockZUtilitiesClient extends Client {
     public health: {
         commands: {
             temp: {

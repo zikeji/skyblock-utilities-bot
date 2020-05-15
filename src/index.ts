@@ -1,5 +1,5 @@
 import {ShardingManager} from "kurasuta";
-import {SkyblockUtilitiesClient} from "./lib/structures/SkyblockUtilitiesClient";
+import {SkyBlockZUtilitiesClient} from "./lib/structures/SkyBlockZUtilitiesClient";
 import {KlasaClientOptions} from "klasa";
 import {join} from "path";
 import {SharderOptions} from "kurasuta/typings/Sharding/ShardingManager";
@@ -17,12 +17,12 @@ class BotShardingManager extends ShardingManager {
 
 const sharder = new BotShardingManager(join(__dirname, "main"), {
     token: process.env.BOT_TOKEN,
-    client: SkyblockUtilitiesClient,
+    client: SkyBlockZUtilitiesClient,
     clientOptions: {
         commandEditing: true,
         commandLogging: process.env.COMMAND_LOGGING === 'yes',
         fetchAllMembers: false,
-        prefix: 'sb ',
+        prefix: 'sb',
         prefixCaseInsensitive: true,
         noPrefixDM: true,
         production: process.env.NODE_ENV === 'production',

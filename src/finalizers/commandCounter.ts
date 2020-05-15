@@ -1,8 +1,8 @@
 import {Finalizer, KlasaMessage} from "klasa";
-import {SkyblockUtilitiesClient} from "../lib/structures/SkyblockUtilitiesClient";
+import {SkyBlockZUtilitiesClient} from "../lib/structures/SkyBlockZUtilitiesClient";
 
 export default class extends Finalizer {
-    public readonly client: SkyblockUtilitiesClient;
+    public readonly client: SkyBlockZUtilitiesClient;
 
     async run (message: KlasaMessage) {
         const cmds = this.client.health.commands.temp;
