@@ -33,7 +33,7 @@ export default class extends Command {
             if (!('all' in message.flags) && (message.channel instanceof DMChannel || (message.channel instanceof TextChannel && message.channel.permissionsFor(this.client.user).has(Permissions.FLAGS.EMBED_LINKS)))) {
                 return message.send(
                     new MessageEmbed()
-                        .setColor(message.member.displayColor)
+                        .setColor(message.member ? message.member.displayColor : '#5f5ac6')
                         .setTitle(`Command - ${command.name}`)
                         .setDescription([
                             isFunction(command.description) ? command.description(message.language) : command.description,
@@ -94,7 +94,7 @@ export default class extends Command {
     async buildDisplay(message: KlasaMessage) {
         const commands = await this._fetchCommands(message);
         const display = new RichDisplay();
-        const color = message.member.displayColor;
+        const color = message.member ? message.member.displayColor : '#5f5ac6';
         for (const [category, list] of commands) {
             display.addPage(new MessageEmbed()
                 .setTitle(`${category} Commands`)
