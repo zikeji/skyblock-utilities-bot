@@ -27,17 +27,14 @@ export default class Skills extends Command {
             usage: '<username:string> [profile:string]',
             usageDelim: ' ',
             extendedHelp: [
-                'List a user\'s skill levels and average skill level.',
-                '',
                 'If you\'ve changed your API it might take up to a minute for it to reflect when you use the command. For most accurate data ensure your Skills API is enabled on the profile you are requesting.',
                 '',
-                'Examples ::',
-                'skills RealMinecraftIGN',
-                'skills RealMinecraftIGN Cucumber'
+                '[PREFIX_COMMAND] RealMinecraftIGN',
+                '[PREFIX_COMMAND] RealMinecraftIGN Cucumber'
             ].join('\n')
         });
 
-        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix}help skills\` for more instructions.`);
+        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${this.client.prefixCommand('help skills', message)}\` for more instructions.`);
     }
 
 

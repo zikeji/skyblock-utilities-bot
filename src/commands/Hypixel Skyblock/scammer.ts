@@ -30,14 +30,11 @@ export default class extends Command {
             usage: '<username:string>',
             usageDelim: ' ',
             extendedHelp: [
-                'Check a user against the SkyBlockZ Discord\'s scammer database.',
-                '',
-                'Examples ::',
-                'scammer RealMinecraftIGN'
+                '[PREFIX_COMMAND] RealMinecraftIGN'
             ].join('\n')
         });
 
-        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix}help scammer\` for more instructions.`);
+        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${this.client.prefixCommand('help scammer', message)}\` for more instructions.`);
     }
 
 

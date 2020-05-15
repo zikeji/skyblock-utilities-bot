@@ -47,14 +47,11 @@ export default class extends Command {
             usage: '<username:string>',
             usageDelim: ' ',
             extendedHelp: [
-            'List user\'s active auctions and set reminders.',
-            '',
-            'Examples ::',
-            'ah RealMinecraftIGN',
+            '[PREFIX_COMMAND] RealMinecraftIGN',
         ].join('\n')
         });
 
-        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`help auction\` for more instructions.`);
+        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${this.client.prefixCommand('help auction', message)}\` for more instructions.`);
     }
 
 

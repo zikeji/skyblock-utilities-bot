@@ -36,8 +36,10 @@ export class SkyBlockZUtilitiesClient extends Client {
         });
     }
 
-    public prefixCommand(command: Command, message?: KlasaMessage): string {
-        const prefix = message && message.guild ? message.guild.settings.get<string>('prefix') : this.options.prefix;
-        return `${prefix}${command.name}`
+    private static PREFIX_REGEX = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]$/;
+
+    public prefixCommand(command: Command | string, message?: KlasaMessage): string {
+        const prefix: string = message && message.guild ? message.guild.settings.get<string>('prefix') : <string>this.options.prefix;
+        return `${SkyBlockZUtilitiesClient.PREFIX_REGEX.test(prefix) ? prefix : `${prefix} `}${command instanceof Command ? command.name : command}`;
     }
 }

@@ -21,14 +21,11 @@ export default class BazaarCommand extends Command {
             usage: '<item_name:...string>',
             usageDelim: ' ',
             extendedHelp: [
-                'List the bazaar summary for an item.',
-                '',
-                'Examples ::',
-                'bz super egg',
+                '[PREFIX_COMMAND] super egg',
             ].join('\n')
         });
 
-        this.customizeResponse('item_name', message => `:no_entry: **|** You must supply the item name of the item you are checking! Run \`${message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix}help bazaar\` for more instructions.`);
+        this.customizeResponse('item_name', message => `:no_entry: **|** You must supply the item name of the item you are checking! Run \`${this.client.prefixCommand('help bazaar', message)}\` for more instructions.`);
     }
 
     async run(message: KlasaMessage, [itemName]: [string | null]): Promise<any> {

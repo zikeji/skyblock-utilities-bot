@@ -27,15 +27,12 @@ export default class extends Command {
             usage: '<username:string> [profile:string]',
             usageDelim: ' ',
             extendedHelp: [
-                'List a user\'s pet milestone progress.',
-                '',
-                'Examples ::',
-                'petprogress RealMinecraftIGN',
-                'petprogress RealMinecraftIGN Cucumber'
+                '[PREFIX_COMMAND] RealMinecraftIGN',
+                '[PREFIX_COMMAND] RealMinecraftIGN Cucumber'
             ].join('\n')
         });
 
-        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix}help petprogress\` for more instructions.`);
+        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${this.client.prefixCommand('help petprogress', message)}\` for more instructions.`);
     }
 
 

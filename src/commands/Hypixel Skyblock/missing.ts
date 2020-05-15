@@ -275,17 +275,14 @@ export default class Missing extends Command {
             usage: '<username:string> [profile:string]',
             usageDelim: ' ',
             extendedHelp: [
-                'List a user\'s missing, unnecessary, or duplicate accessories on Hypixel\'s Skyblock.',
-                '',
                 'If you\'ve changed your API or accessories it might take up to a minute for it to reflect when you use the command.',
                 '',
-                'Examples ::',
-                'missing RealMinecraftIGN',
-                'missing RealMinecraftIGN Cucumber'
+                '[PREFIX_COMMAND] RealMinecraftIGN',
+                '[PREFIX_COMMAND] RealMinecraftIGN Cucumber'
             ].join('\n')
         });
 
-        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix}help missing\` for more instructions.`);
+        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${this.client.prefixCommand('help missing', message)}\` for more instructions.`);
     }
 
 

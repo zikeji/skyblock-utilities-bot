@@ -1,16 +1,16 @@
 // Copyright (c) 2017-2019 dirigeants. All rights reserved. MIT license.
-import {CommandStore, KlasaMessage, Command, RichDisplay, util} from "klasa";
-import {MessageEmbed, Permissions, TextChannel} from "discord.js";
+import {CommandStore, KlasaMessage, Command, RichDisplay, util, ReactionHandler} from "klasa";
+import {DMChannel, MessageEmbed, Permissions, TextChannel} from "discord.js";
 import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
 
 const isFunction = util.isFunction;
 
-const PERMISSIONS_RICHDISPLAY = new Permissions([Permissions.FLAGS.MANAGE_MESSAGES, Permissions.FLAGS.ADD_REACTIONS]);
+const PERMISSIONS_RICHDISPLAY = new Permissions([Permissions.FLAGS.MANAGE_MESSAGES, Permissions.FLAGS.EMBED_LINKS, Permissions.FLAGS.ADD_REACTIONS]);
 const time = 1000 * 60 * 3;
 
 export default class extends Command {
     readonly client: SkyBlockZUtilitiesClient;
-    private handlers: Map<any, any>;
+    private handlers: Map<string, ReactionHandler>;
 
     constructor(client: SkyBlockZUtilitiesClient, store: CommandStore, file: string[], directory: string) {
         super(client, store, file, directory, {
@@ -30,13 +30,30 @@ export default class extends Command {
 
     async run(message: KlasaMessage, [command]: [Command | null]) {
         if (command) {
-            return message.sendMessage([
-                `= ${command.name} = `,
-                isFunction(command.description) ? command.description(message.language) : command.description,
-                message.language.get('COMMAND_HELP_USAGE', command.usage.fullUsage(message)),
-                message.language.get('COMMAND_HELP_EXTENDED'),
-                isFunction(command.extendedHelp) ? command.extendedHelp(message.language) : command.extendedHelp
-            ], {code: 'asciidoc'});
+            if (!('all' in message.flags) && (message.channel instanceof DMChannel || (message.channel instanceof TextChannel && message.channel.permissionsFor(this.client.user).has(Permissions.FLAGS.EMBED_LINKS)))) {
+                return message.send(
+                    new MessageEmbed()
+                        .setColor(message.member.displayColor)
+                        .setTitle(`Command - ${command.name}`)
+                        .setDescription([
+                            isFunction(command.description) ? command.description(message.language) : command.description,
+                            '',
+                            '**Usage**',
+                            message.language.get('COMMAND_HELP_USAGE', command.usage.fullUsage(message)).replace(/Usage :: /g, ''),
+                            '',
+                            '**Extended Help**',
+                            (isFunction(command.extendedHelp) ? command.extendedHelp(message.language) : command.extendedHelp).replace(/\[PREFIX_COMMAND]/g, this.client.prefixCommand(command, message))
+                        ].join('\n'))
+                );
+            } else {
+                return message.send([
+                    `= ${command.name} = `,
+                    isFunction(command.description) ? command.description(message.language) : command.description,
+                    message.language.get('COMMAND_HELP_USAGE', command.usage.fullUsage(message)),
+                    message.language.get('COMMAND_HELP_EXTENDED'),
+                    (isFunction(command.extendedHelp) ? command.extendedHelp(message.language) : command.extendedHelp).replace(/\[PREFIX_COMMAND]/g, this.client.prefixCommand(command, message))
+                ], {code: 'asciidoc'});
+            }
         }
 
         if (!('all' in message.flags) && message.guild && message.channel instanceof TextChannel && message.channel.permissionsFor(this.client.user).has(PERMISSIONS_RICHDISPLAY)) {
@@ -45,7 +62,7 @@ export default class extends Command {
             if (previousHandler) previousHandler.stop();
 
             // @ts-ignore
-            const handler = await (await this.buildDisplay(message)).run(await message.send('Loading Commands...'), {
+            const handler = await (await this.buildDisplay(message)).run(await message.send('_ _'), {
                 filter: (reaction, user) => user.id === message.author.id,
                 time
             });
@@ -65,11 +82,10 @@ export default class extends Command {
 
     async buildHelp(message: KlasaMessage) {
         const commands = await this._fetchCommands(message);
-        const prefix = message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix;
 
         const helpMessage = [];
         for (const [category, list] of commands) {
-            helpMessage.push(`**${category} Commands**:\n`, list.map(this.formatCommand.bind(this, message, prefix, false)).join('\n'), '');
+            helpMessage.push(`**${category} Commands**:\n`, list.map(this.formatCommand.bind(this, message, false)).join('\n'), '');
         }
 
         return helpMessage.join('\n');
@@ -77,23 +93,22 @@ export default class extends Command {
 
     async buildDisplay(message: KlasaMessage) {
         const commands = await this._fetchCommands(message);
-        const prefix = message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix;
         const display = new RichDisplay();
         const color = message.member.displayColor;
         for (const [category, list] of commands) {
             display.addPage(new MessageEmbed()
                 .setTitle(`${category} Commands`)
                 .setColor(color)
-                .setDescription(list.map(this.formatCommand.bind(this, message, prefix, true)).join('\n'))
+                .setDescription(list.map(this.formatCommand.bind(this, message, true)).join('\n'))
             );
         }
 
         return display;
     }
 
-    formatCommand(message: KlasaMessage, prefix: string, richDisplay: boolean, command: Command) {
+    formatCommand(message: KlasaMessage, richDisplay: boolean, command: Command) {
         const description = isFunction(command.description) ? command.description(message.language) : command.description;
-        return richDisplay ? `• ${prefix}${command.name} → ${description}` : `• **${prefix}${command.name}** → ${description}`;
+        return richDisplay ? `• ${this.client.prefixCommand(command, message)} → ${description}` : `• **${this.client.prefixCommand(command, message)}** → ${description}`;
     }
 
     async _fetchCommands(message: KlasaMessage) {
@@ -111,5 +126,4 @@ export default class extends Command {
 
         return commands;
     }
-
 };

@@ -25,15 +25,12 @@ export default class extends Command {
             usage: '<username:string> [profile:string]',
             usageDelim: ' ',
             extendedHelp: [
-                'List a user\'s slayer levels.',
-                '',
-                'Examples ::',
-                'slayers RealMinecraftIGN',
-                'slayers RealMinecraftIGN Cucumber'
+                '[PREFIX_COMMAND] RealMinecraftIGN',
+                '[PREFIX_COMMAND] RealMinecraftIGN Cucumber'
             ].join('\n')
         });
 
-        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix}help slayers\` for more instructions.`);
+        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${this.client.prefixCommand('help slayers', message)}\` for more instructions.`);
     }
 
 

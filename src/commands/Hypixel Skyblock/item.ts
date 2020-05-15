@@ -21,14 +21,11 @@ export default class ItemCommand extends Command {
             usage: '<query:...string>',
             usageDelim: ' ',
             extendedHelp: [
-                'Lookup an item\'s average price on auctions.craftlink.xyz.',
-                '',
-                'Examples ::',
-                'item Superior Dragon Helmet',
+                '[PREFIX_COMMAND] Superior Dragon Helmet',
             ].join('\n')
         });
 
-        this.customizeResponse('query', message => `:no_entry: **|** You must supply a search query! Run \`${message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix}help item\` for more instructions.`);
+        this.customizeResponse('query', message => `:no_entry: **|** You must supply a search query! Run \`${this.client.prefixCommand('help item', message)}\` for more instructions.`);
     }
 
 
