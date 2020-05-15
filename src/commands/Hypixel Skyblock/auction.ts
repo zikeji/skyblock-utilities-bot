@@ -1,4 +1,4 @@
-import {Command, CommandStore, KlasaClient, KlasaMessage} from "klasa";
+import {Command, CommandStore, KlasaMessage} from "klasa";
 import {HypixelApi} from "../../lib/thirdparty/Hypixel";
 import {MessageEmbed, TextChannel} from "discord.js";
 import MinecraftTextJS from "minecraft-text-js";
@@ -9,6 +9,7 @@ import {AuctionItem} from "../../lib/thirdparty/Hypixel/interfaces/SkyBlock/auct
 import {UnifiedMojang} from "../../lib/thirdparty/UnifiedMojang";
 import {UnifiedMojangResponse} from "../../lib/thirdparty/UnifiedMojang/interfaces/response";
 import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
+import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
 
 const turndownService = new TurndownService();
 
@@ -32,7 +33,9 @@ interface AuctionEmbedData {
 }
 
 export default class extends Command {
-    constructor(client: KlasaClient, store: CommandStore, file: string[], directory: string) {
+    readonly client: SkyBlockZUtilitiesClient;
+
+    constructor(client: SkyBlockZUtilitiesClient, store: CommandStore, file: string[], directory: string) {
         super(client, store, file, directory, {
             name: "auction",
             enabled: true,
@@ -51,7 +54,7 @@ export default class extends Command {
         ].join('\n')
         });
 
-        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`${message.guild ? message.guild.settings.get('prefix') : this.client.options.prefix}help auction\` for more instructions.`);
+        this.customizeResponse('username', message => `:no_entry: **|** You must supply the Minecraft username you are checking! Run \`help auction\` for more instructions.`);
     }
 
 

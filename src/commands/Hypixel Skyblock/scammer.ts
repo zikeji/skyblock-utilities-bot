@@ -1,10 +1,11 @@
 import {json} from "web-request";
 import {cache} from "../../cache";
-import {Command, CommandStore, KlasaClient, KlasaMessage} from "klasa";
+import {Command, CommandStore, KlasaMessage} from "klasa";
 import {UnifiedMojang} from "../../lib/thirdparty/UnifiedMojang";
 import {UnifiedMojangResponse} from "../../lib/thirdparty/UnifiedMojang/interfaces/response";
 import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
 import {MessageEmbed} from "discord.js";
+import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
 
 interface ScammerList {
     [key: string]: {
@@ -15,7 +16,9 @@ interface ScammerList {
 }
 
 export default class extends Command {
-    constructor(client: KlasaClient, store: CommandStore, file: string[], directory: string) {
+    readonly client: SkyBlockZUtilitiesClient;
+
+    constructor(client: SkyBlockZUtilitiesClient, store: CommandStore, file: string[], directory: string) {
         super(client, store, file, directory, {
             name: "scammer",
             enabled: true,

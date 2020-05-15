@@ -1,4 +1,4 @@
-import {Command, CommandStore, KlasaClient, KlasaMessage} from "klasa";
+import {Command, CommandStore, KlasaMessage} from "klasa";
 import {HypixelApi} from "../../lib/thirdparty/Hypixel";
 import {UnifiedMojang} from "../../lib/thirdparty/UnifiedMojang";
 import {UnifiedMojangResponse} from "../../lib/thirdparty/UnifiedMojang/interfaces/response";
@@ -10,6 +10,7 @@ import {NBT} from "@xmcl/nbt";
 import * as TurndownService from "turndown";
 import MinecraftTextJS from "minecraft-text-js";
 import {MessageEmbed} from "discord.js";
+import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
 
 const turndownService = new TurndownService();
 
@@ -260,7 +261,9 @@ const tiered_talismans = {
 };
 
 export default class Missing extends Command {
-    constructor(client: KlasaClient, store: CommandStore, file: string[], directory: string) {
+    readonly client: SkyBlockZUtilitiesClient;
+
+    constructor(client: SkyBlockZUtilitiesClient, store: CommandStore, file: string[], directory: string) {
         super(client, store, file, directory, {
             name: "missing",
             enabled: true,

@@ -1,12 +1,15 @@
-import {Command, CommandStore, KlasaClient, KlasaMessage} from "klasa";
+import {Command, CommandStore, KlasaMessage} from "klasa";
 import {Craftlink} from "../../lib/thirdparty/Craftlink";
 import {MessageEmbed} from "discord.js";
 import {ItemsListResponse} from "../../lib/thirdparty/Craftlink/interfaces/itemsList";
 import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
+import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
 
 
 export default class ItemCommand extends Command {
-    constructor(client: KlasaClient, store: CommandStore, file: string[], directory: string) {
+    readonly client: SkyBlockZUtilitiesClient;
+
+    constructor(client: SkyBlockZUtilitiesClient, store: CommandStore, file: string[], directory: string) {
         super(client, store, file, directory, {
             name: "item",
             enabled: true,

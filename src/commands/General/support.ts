@@ -1,10 +1,12 @@
-import {Command, KlasaMessage, CommandStore, KlasaClient} from "klasa";
+import {Command, KlasaMessage, CommandStore} from "klasa";
 import {MessageEmbed} from "discord.js";
+import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
 
 
 export default class extends Command {
+    readonly client: SkyBlockZUtilitiesClient;
 
-    constructor(client: KlasaClient, store: CommandStore, file: string[], directory: string) {
+    constructor(client: SkyBlockZUtilitiesClient, store: CommandStore, file: string[], directory: string) {
         super(client, store, file, directory, {
             name: 'support',
             aliases: ['contact', 'feedback', 'suggest', 'suggestions', 'complaint', 'complaints', 'issue', 'issues'],

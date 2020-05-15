@@ -1,12 +1,15 @@
-import {Command, CommandStore, KlasaClient, KlasaMessage} from "klasa";
+import {Command, CommandStore, KlasaMessage} from "klasa";
 import {HypixelApi} from "../../lib/thirdparty/Hypixel";
 import {MessageEmbed} from "discord.js";
 import {ProductResponse} from "../../lib/thirdparty/Hypixel/interfaces/SkyBlock/bazaar";
 import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
 import {AbbreviateNumber} from "../../lib/util/AbbreviateNumber";
+import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
 
 export default class BazaarCommand extends Command {
-    constructor(client: KlasaClient, store: CommandStore, file: string[], directory: string) {
+    readonly client: SkyBlockZUtilitiesClient;
+
+    constructor(client: SkyBlockZUtilitiesClient, store: CommandStore, file: string[], directory: string) {
         super(client, store, file, directory, {
             name: "bazaar",
             enabled: true,

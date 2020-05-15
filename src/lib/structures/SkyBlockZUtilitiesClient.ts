@@ -1,4 +1,4 @@
-import {Client, KlasaClientOptions} from "klasa";
+import {Client, Command, KlasaClientOptions, KlasaMessage} from "klasa";
 
 require('./schemas/defaultClientSchema');
 
@@ -34,5 +34,10 @@ export class SkyBlockZUtilitiesClient extends Client {
                 })
             }
         });
+    }
+
+    public prefixCommand(command: Command, message?: KlasaMessage): string {
+        const prefix = message && message.guild ? message.guild.settings.get<string>('prefix') : this.options.prefix;
+        return `${prefix}${command.name}`
     }
 }

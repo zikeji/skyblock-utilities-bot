@@ -1,9 +1,12 @@
 import {version as botVersion} from "../../../package.json";
-import {Command, version as klasaVersion, Duration, KlasaMessage, CommandStore, KlasaClient} from "klasa";
+import {Command, version as klasaVersion, Duration, KlasaMessage, CommandStore} from "klasa";
 import {MessageEmbed, version as discordVersion} from "discord.js";
+import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
 
 export default class extends Command {
-    constructor(client: KlasaClient, store: CommandStore, file: string[], directory: string) {
+    readonly client: SkyBlockZUtilitiesClient;
+
+    constructor(client: SkyBlockZUtilitiesClient, store: CommandStore, file: string[], directory: string) {
         super(client, store, file, directory, {
             runIn: ['text', 'dm'],
             requiredPermissions: ['EMBED_LINKS'],
