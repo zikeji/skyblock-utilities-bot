@@ -15,17 +15,16 @@ export default class extends Command {
     }
 
     async run(message: KlasaMessage) {
-        let [users, guilds, channels, memory, cpm] = [0, 0, 0, 0, 0];
+        let [users, linkedUsers, guilds, channels, memory, cpm] = [0, 0, 0, 0, 0, 0];
 
-        if (this.client.shard) {
-            const results = await this.client.shard.broadcastEval(`[this.guilds.cache.reduce((prev, val) => val.memberCount + prev, 0), this.guilds.cache.size, this.channels.cache.size, (process.memoryUsage().heapUsed / 1024 / 1024), this.health.commands.cmdCount[59].count]`);
-            for (const result of results) {
-                users += result[0];
-                guilds += result[1];
-                channels += result[2];
-                memory += result[3];
-                cpm += result[4];
-            }
+        const results = await this.client.shard.broadcastEval(`[this.guilds.cache.reduce((prev, val) => val.memberCount + prev, 0), this.users.cache.filter(u => u.settings.get('minecraft.uuid')).size, this.guilds.cache.size, this.channels.cache.size, (process.memoryUsage().heapUsed / 1024 / 1024), this.health.commands.cmdCount[59].count]`);
+        for (const result of results) {
+            users += result[0];
+            linkedUsers += result[1];
+            guilds += result[2];
+            channels += result[3];
+            memory += result[4];
+            cpm += result[5];
         }
 
         return message.send(
@@ -33,7 +32,7 @@ export default class extends Command {
                 .setAuthor(`SkyBlockZ Utilities v${botVersion} - Statistics`, this.client.user.displayAvatarURL())
                 .setColor('#5f5ac6')
                 .setTimestamp()
-                .addField('Users', `${users.toLocaleString()}`, true)
+                .addField('Users', `${users.toLocaleString()} (${linkedUsers.toLocaleString()})`, true)
                 .addField('Guilds', `${guilds.toLocaleString()}`, true)
                 .addField('Channels', `${channels.toLocaleString()}`, true)
 

@@ -21,7 +21,7 @@ export default class extends Command {
                 .setDescription([
                     `Thanks for showing interest in inviting my bot! You can invite it using the link below. Thank you for showing your support!`,
                     '',
-                    '[Invite SkyBlockZ Utilities to your server!](https://discordapp.com/oauth2/authorize?client_id=707857251536470067&permissions=347200&scope=bot)'
+                    `[Invite ${this.client.user.username} to your server!](https://discordapp.com/oauth2/authorize?client_id=707857251536470067&permissions=347200&scope=bot)`
                 ].join('\n')));
     }
 };

@@ -1,6 +1,7 @@
-import {Client, Command, KlasaClientOptions, KlasaMessage} from "klasa";
+import {Client, Command, KlasaClientOptions, KlasaMessage} from 'klasa';
 
 require('./schemas/defaultClientSchema');
+require('./schemas/defaultUserSchema');
 
 export class SkyBlockZUtilitiesClient extends Client {
     public health: {
