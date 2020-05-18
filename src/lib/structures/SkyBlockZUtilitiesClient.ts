@@ -50,20 +50,21 @@ export class SkyBlockZUtilitiesClient extends Client {
     public scanUserGuildsForRoles(userId: string) {
         this.guilds.cache.forEach(guild => {
             const member = guild.member(userId);
-            if (!member) return;
-            member.user.settings.sync().then(() => {
-                if (guild.member(this.user.id).hasPermission(Permissions.FLAGS.MANAGE_ROLES)) {
-                    // run role related checks
-                    const linkedRole = guild.roles.cache.get(guild.settings.get<string>('linked_role'));
-                    if (linkedRole) {
-                        if (member.user.settings.get<string>('minecraft.uuid') && !member.roles.cache.has(linkedRole.id)) {
-                            member.roles.add(linkedRole, 'Member linked their account, added linked role.').catch(this.console.error);
-                        } else if (!member.user.settings.get<string>('minecraft.uuid') && member.roles.cache.has(linkedRole.id)) {
-                            member.roles.remove(linkedRole, 'Member unlinked their account, removed linked role.').catch(this.console.error);
+            if (member) {
+                member.user.settings.sync().then(() => {
+                    if (guild.member(this.user.id).hasPermission(Permissions.FLAGS.MANAGE_ROLES)) {
+                        // run role related checks
+                        const linkedRole = guild.roles.cache.get(guild.settings.get('linked_role'));
+                        if (linkedRole) {
+                            if (member.user.settings.get('minecraft.uuid') && !member.roles.cache.has(linkedRole.id)) {
+                                member.roles.add(linkedRole, 'Member linked their account, added linked role.').catch(this.console.error);
+                            } else if (!member.user.settings.get('minecraft.uuid') && member.roles.cache.has(linkedRole.id)) {
+                                member.roles.remove(linkedRole, 'Member unlinked their account, removed linked role.').catch(this.console.error);
+                            }
                         }
                     }
-                }
-            });
+                });
+            }
         });
     }
 }
