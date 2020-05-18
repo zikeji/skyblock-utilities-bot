@@ -297,7 +297,8 @@ export default class Link extends Command {
         await message.author.settings.update('minecraft.link_method', method);
         await message.author.settings.update('minecraft.link_datetime', new Date().getTime().toString(10));
 
-        // todo: only reached on success - run guild scanning / role assignment functionality
+        // run client utility to scan guilds for applicable roles
+        this.client.shard.broadcastEval(`this.scanUserGuildsForRoles('${message.author.id}')`).catch(this.client.console.error);
 
         this.running.splice(this.running.indexOf(message.author.id, 1));
         return reply.send(`:white_check_mark: **|** ${message.author}, you have linked your Minecraft account \`${user.username}\` successfully!`);

@@ -20,8 +20,6 @@ export default class extends Command {
             return message.send(`:no_entry: **|** ${message.author}, you do not have a Minecraft account linked.`);
         }
 
-        // TODO: guild scanning / removal of stuff
-
         await message.author.settings.update('minecraft.link_history', {
             uuid,
             method: message.author.settings.get('minecraft.link_method'),
@@ -32,6 +30,9 @@ export default class extends Command {
         await message.author.settings.update('minecraft.uuid', null);
         await message.author.settings.update('minecraft.link_method', null);
         await message.author.settings.update('minecraft.link_datetime', null);
+
+        // run client utility to scan guilds for applicable roles
+        this.client.shard.broadcastEval(`this.scanUserGuildsForRoles('${message.author.id}')`).catch(this.client.console.error);
 
         return message.send(`:white_check_mark: **|** ${message.author}, we've successfully unlinked your Minecraft account.`);
     }
