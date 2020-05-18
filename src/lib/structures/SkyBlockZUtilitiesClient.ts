@@ -46,22 +46,24 @@ export class SkyBlockZUtilitiesClient extends Client {
         return `${SkyBlockZUtilitiesClient.PREFIX_REGEX.test(prefix) ? prefix : `${prefix} `}${command instanceof Command ? command.name : command}`;
     }
 
-    public async scanUserGuildsForRoles(userId: string) {
-        for (const guild of this.guilds.cache.array()) {
+    // noinspection JSUnusedGlobalSymbols
+    public scanUserGuildsForRoles(userId: string) {
+        this.guilds.cache.forEach(guild => {
             const member = guild.member(userId);
-            if (!member) continue;
-            await member.user.settings.sync();
-            if (guild.member(this.user.id).hasPermission(Permissions.FLAGS.MANAGE_ROLES)) {
-                // run role related checks
-                const linkedRole = guild.roles.cache.get(guild.settings.get<string>('linked_role'));
-                if (linkedRole) {
-                    if (member.user.settings.get<string>('minecraft.uuid')) {
-                        if (!member.roles.cache.has(linkedRole.id)) await member.roles.add(linkedRole, 'Member linked their account, added linked role.');
-                    } else {
-                        if (member.roles.cache.has(linkedRole.id)) await member.roles.remove(linkedRole, 'Member unlinked their account, removed linked role.');
+            if (!member) return;
+            member.user.settings.sync().then(() => {
+                if (guild.member(this.user.id).hasPermission(Permissions.FLAGS.MANAGE_ROLES)) {
+                    // run role related checks
+                    const linkedRole = guild.roles.cache.get(guild.settings.get<string>('linked_role'));
+                    if (linkedRole) {
+                        if (member.user.settings.get<string>('minecraft.uuid') && !member.roles.cache.has(linkedRole.id)) {
+                            member.roles.add(linkedRole, 'Member linked their account, added linked role.').catch(this.console.error);
+                        } else if (!member.user.settings.get<string>('minecraft.uuid') && member.roles.cache.has(linkedRole.id)) {
+                            member.roles.remove(linkedRole, 'Member unlinked their account, removed linked role.').catch(this.console.error);
+                        }
                     }
                 }
-            }
-        }
+            });
+        });
     }
 }
