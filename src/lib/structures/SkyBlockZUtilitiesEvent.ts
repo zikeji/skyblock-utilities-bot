@@ -5,6 +5,6 @@ export abstract class SkyBlockZUtilitiesEvent extends Event {
 
     protected constructor(client: KlasaClient, store: EventStore, file: string[], directory: string, options?: EventOptions) {
         super(client, store, file, directory, options);
-        this.shardHeader = new Colors({background: 'lightgray', text: 'black'}).format(`[Shard ${this.client.shard.ids[0]}]`)
+        this.shardHeader = new Colors({background: 'cyan', text: 'white'}).format(`[${this.client.shard.ids[0]}]`)
     }
 }

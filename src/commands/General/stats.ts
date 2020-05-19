@@ -33,20 +33,20 @@ export default class extends Command {
             new MessageEmbed()
                 .setAuthor(`SkyBlockZ Utilities v${botVersion} - Statistics`, this.client.user.displayAvatarURL())
                 .setColor('#5f5ac6')
-                .setTimestamp()
                 .addField('Users', `${users.toLocaleString()} (${linkedUsers.toLocaleString()})`, true)
                 .addField('Guilds', `${guilds.toLocaleString()}`, true)
                 .addField('Channels', `${channels.toLocaleString()}`, true)
 
                 .addField('Uptime', `${Duration.toNow(Date.now() - (process.uptime() * 1000))}`, true)
                 .addField('Memory Usage', `${memory.toFixed(2)} MB`, true)
-                .addField("TCR", this.client.settings.get('counter.total') ? this.client.settings.get('counter.total').toLocaleString() : 0, true)
-
-                .addField('_ _', `_ _`, true)
                 .addField('Shard', `${message.guild ? message.guild.shardID + 1 : 1}/${this.client.shard.count}`, true)
+
+                .addField("TCR", this.client.settings.get('counter.total') ? this.client.settings.get('counter.total').toLocaleString() : 0, true)
                 .addField('CPM', `${cpm.toLocaleString()}`, true)
+                .addField('_ _', `_ _`, true)
 
                 .setFooter(`Klasa v${klasaVersion} | Discord.js v${discordVersion} | Node.js ${process.version}`)
+                .setTimestamp()
         );
     }
 

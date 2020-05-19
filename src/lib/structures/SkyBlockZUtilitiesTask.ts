@@ -7,6 +7,6 @@ export abstract class SkyBlockZUtilitiesTask extends Task {
 
     protected constructor(client: KlasaClient, store: TaskStore, file: string[], directory: string, options?: TaskOptions) {
         super(client, store, file, directory, options);
-        this.shardHeader = new Colors({background: 'lightgray', text: 'black'}).format(`[Shard ${this.client.shard.ids[0]}]`)
+        this.shardHeader = new Colors({background: 'cyan', text: 'white'}).format(`[${this.client.shard.ids[0]}]`)
     }
 }
