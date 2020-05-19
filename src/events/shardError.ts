@@ -1,7 +1,7 @@
-import {Event} from "klasa";
+import {SkyBlockZUtilitiesEvent} from "../lib/structures/SkyBlockZUtilitiesEvent";
 
-export default class extends Event {
-    async run(error, shardID) {
-        this.client.console.error(`[${shardID}]:`, error);
+export default class extends SkyBlockZUtilitiesEvent {
+    async run(error) {
+        this.client.console.error(`${this.shardHeader}`, error);
     }
 }

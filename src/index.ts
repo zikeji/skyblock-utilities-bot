@@ -1,64 +1,9 @@
-import {ShardingManager} from "kurasuta";
-import {SkyBlockZUtilitiesClient} from "./lib/structures/SkyBlockZUtilitiesClient";
-import {KlasaClientOptions} from "klasa";
-import {join} from "path";
-import {SharderOptions} from "kurasuta/typings/Sharding/ShardingManager";
+import {ShardingManager} from "discord.js";
+import {join} from 'path';
 
-interface BotSharderOptions extends SharderOptions {
-    clientOptions: KlasaClientOptions
-}
-
-class BotShardingManager extends ShardingManager {
-    clientOptions: KlasaClientOptions;
-    constructor(path: string, options: BotSharderOptions) {
-        super(path, options);
-    }
-}
-
-const sharder = new BotShardingManager(join(__dirname, "main"), {
+const manager = new ShardingManager(join(__dirname, 'main.js'), {
     token: process.env.BOT_TOKEN,
-    client: SkyBlockZUtilitiesClient,
-    clientOptions: {
-        commandEditing: true,
-        commandLogging: process.env.COMMAND_LOGGING === 'yes',
-        fetchAllMembers: false,
-        prefix: 'sb',
-        prefixCaseInsensitive: true,
-        noPrefixDM: true,
-        production: process.env.NODE_ENV === 'production',
-        ownerID: '185787844843798528',
-        pieceDefaults: {
-            commands: {
-                deletable: true,
-                guarded: true,
-                cooldown: 3
-            }
-        },
-        typing: false,
-        // quicker reactions
-        restTimeOffset: 100,
-        // longer timeout
-        restWsBridgeTimeout: 10000,
-        // retry limit
-        retryLimit: Infinity,
-        providers: {
-            default: 'postgresql',
-            postgresql: {
-                host: process.env.DB_HOST,
-                port: process.env.DB_PORT,
-                database: process.env.DB_NAME,
-                user: process.env.DB_USER,
-                password: process.env.DB_PASSWORD
-            }
-        },
-        presence: {
-            activity: {
-                name: `"sb help" to get started!`,
-                type: 'PLAYING'
-            }
-        },
-        readyMessage: (client) => `Successfully initialized. Ready to serve ${client.guilds.cache.size} guilds.`
-    }
+    totalShards: 2
 });
 
-sharder.spawn().catch(console.error);
+manager.spawn().catch(console.error);

@@ -1,7 +1,8 @@
-import {Colors, Event, EventStore, KlasaClient} from "klasa";
+import {Colors, EventStore, KlasaClient} from "klasa";
 import {GuildMember, PartialGuildMember, Permissions} from "discord.js";
+import {SkyBlockZUtilitiesEvent} from "../lib/structures/SkyBlockZUtilitiesEvent";
 
-export default class extends Event {
+export default class extends SkyBlockZUtilitiesEvent {
     private readonly header: string;
 
     constructor(client: KlasaClient, store: EventStore, file: string[], directory: string) {
@@ -16,7 +17,7 @@ export default class extends Event {
             try {
                 await member.roles.add(linkedRole, 'Member is linked, added linked role.');
             } catch (e) {
-                this.client.console.error(`${this.header} Caught error applying role. ${e}`);
+                this.client.console.error(`${this.shardHeader} ${this.header} Caught error applying role. ${e}`);
             }
         }
     }

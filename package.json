@@ -21,7 +21,6 @@
     "cache-manager-redis": "^0.6.0",
     "discord.js": "github:discordjs/discord.js",
     "klasa": "github:dirigeants/klasa",
-    "kurasuta": "^2.1.0",
     "lodash": "^4.17.15",
     "luxon": "^1.21.3",
     "match-sorter": "^4.0.2",

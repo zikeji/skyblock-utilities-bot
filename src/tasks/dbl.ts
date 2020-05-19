@@ -1,15 +1,16 @@
-import {Colors, Task} from 'klasa';
+import {Colors} from 'klasa';
 import {json} from "web-request";
+import {SkyBlockZUtilitiesTask} from "../lib/structures/SkyBlockZUtilitiesTask";
 
-export default class extends Task {
+export default class extends SkyBlockZUtilitiesTask {
     private readonly header = new Colors({text: "lightblue"}).format("[DBL UPDATER]");
 
     async run() {
-        if (process.env.NODE_ENV !== 'production' || this.client.shard.id !== 0) return;
+        if (process.env.NODE_ENV !== 'production' || this.client.shard.ids[0] !== 0) return;
         if (!this.client.ready) return;
 
         let [users, guilds] = [0, 0];
-        const shardCount: number = this.client.shard.shardCount;
+        const shardCount: number = this.client.shard.count;
         const shardCounts: number[] = [];
         const results = await this.client.shard.broadcastEval(`[this.guilds.cache.reduce((prev, val) => val.memberCount + prev, 0), this.guilds.cache.size]`);
         for (const result of results) {
@@ -29,7 +30,7 @@ export default class extends Task {
                 }
             });
             if (boatsResponse.error) {
-                this.client.console.error(`${this.header} Error submitting to discord.boats: ${boatsResponse.message}`)
+                this.client.console.error(`${this.shardHeader} ${this.header} Error submitting to discord.boats: ${boatsResponse.message}`)
             }
         }
 
@@ -46,10 +47,10 @@ export default class extends Task {
                 }
             });
             if (topGgResponse.error) {
-                this.client.console.error(`${this.header} Error submitting to top.gg: ${topGgResponse.error}`)
+                this.client.console.error(`${this.shardHeader} ${this.header} Error submitting to top.gg: ${topGgResponse.error}`)
             }
         }
 
-        this.client.console.verbose(`${this.header} Bot is in ${guilds} guilds, has ${users} users, and is running on ${shardCount} shard${shardCount > 1 ? 's' : ''}.`);
+        this.client.console.verbose(`${this.shardHeader} ${this.header} Bot is in ${guilds} guilds, has ${users} users, and is running on ${shardCount} shard${shardCount > 1 ? 's' : ''}.`);
     }
 };

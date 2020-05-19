@@ -27,6 +27,8 @@ export default class extends Command {
             cpm += result[5];
         }
 
+        // @ts-ignore
+        // @ts-ignore
         return message.send(
             new MessageEmbed()
                 .setAuthor(`SkyBlockZ Utilities v${botVersion} - Statistics`, this.client.user.displayAvatarURL())
@@ -40,8 +42,8 @@ export default class extends Command {
                 .addField('Memory Usage', `${memory.toFixed(2)} MB`, true)
                 .addField("TCR", this.client.settings.get('counter.total') ? this.client.settings.get('counter.total').toLocaleString() : 0, true)
 
-                .addField('Cluster', `${this.client.shard.id + 1}/${this.client.shard.clusterCount}`, true)
-                .addField('Shard', `${message.guild ? message.guild.shardID + 1 : 1}/${this.client.shard.shardCount}`, true)
+                .addField('_ _', `_ _`, true)
+                .addField('Shard', `${message.guild ? message.guild.shardID + 1 : 1}/${this.client.shard.count}`, true)
                 .addField('CPM', `${cpm.toLocaleString()}`, true)
 
                 .setFooter(`Klasa v${klasaVersion} | Discord.js v${discordVersion} | Node.js ${process.version}`)

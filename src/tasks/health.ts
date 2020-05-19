@@ -1,9 +1,6 @@
-import { Task } from 'klasa';
-import {SkyBlockZUtilitiesClient} from "../lib/structures/SkyBlockZUtilitiesClient";
+import {SkyBlockZUtilitiesTask} from "../lib/structures/SkyBlockZUtilitiesTask";
 
-export default class extends Task {
-    public readonly client: SkyBlockZUtilitiesClient;
-
+export default class extends SkyBlockZUtilitiesTask {
     async run() {
         this.client.health.commands.cmdCount.shift();
         this.client.health.commands.cmdCount.push(this.client.health.commands.temp);

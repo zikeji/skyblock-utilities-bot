@@ -1,7 +1,8 @@
-import {Colors, Event} from "klasa";
+import {Colors} from "klasa";
+import {SkyBlockZUtilitiesEvent} from "../lib/structures/SkyBlockZUtilitiesEvent";
 
-export default class extends Event {
+export default class extends SkyBlockZUtilitiesEvent {
     async run(e: string) {
-        this.client.console.error(`${new Colors({text: 'warning'}).format('[CLIENT WARN]')} ${e}`);
+        this.client.console.error(`${this.shardHeader} ${new Colors({text: 'warning'}).format('[CLIENT WARN]')} ${e}`);
     }
 };

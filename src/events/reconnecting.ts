@@ -1,7 +1,7 @@
-import {Event} from "klasa";
+import {SkyBlockZUtilitiesEvent} from "../lib/structures/SkyBlockZUtilitiesEvent";
 
-export default class extends Event {
+export default class extends SkyBlockZUtilitiesEvent {
     async run() {
-        this.client.console.warn(`[${this.client.shard.id}]: Reconnecting`);
+        this.client.console.warn(`${this.shardHeader} Reconnecting`);
     }
 }
