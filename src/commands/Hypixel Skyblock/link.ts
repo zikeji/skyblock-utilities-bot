@@ -53,6 +53,7 @@ export default class Link extends Command {
                     .setFooter('🇦 is the easiest and quickest option, we recommend going with that option.')
             );
         } catch {
+            this.running.splice(this.running.indexOf(message.author.id, 1));
             return message.send(`:no_entry: **|** ${message.author}, I am unable to DM you. You must enable server DMs under "Privacy" in order to continue and link your Minecraft account.`);
         }
 
