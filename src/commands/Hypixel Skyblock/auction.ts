@@ -25,6 +25,7 @@ interface AuctionEmbedData {
     title: string;
     description: string;
     ends: Date;
+    bin: boolean;
     fields: {
         name: string;
         value: string;
@@ -120,6 +121,7 @@ export default class extends Command {
                 title: title,
                 description: description,
                 ends: new Date(auction.end),
+                bin: auction.bin,
                 fields: []
             };
 
@@ -129,40 +131,48 @@ export default class extends Command {
                 inline: true
             });
 
-            auctionEmbed.fields.push({
-                name: 'Bids',
-                value: auction.bids.length.toLocaleString(),
-                inline: true
-            });
-
-            if (auction.bids.length > 0) {
-                try {
-                    const topBidder = await UnifiedMojang.user(auction.bids[auction.bids.length - 1].bidder);
-
-                    auctionEmbed.fields.push({
-                        name: 'Top Bid',
-                        value: `**${auction.highest_bid_amount.toLocaleString()} coins**`,
-                        inline: true
-                    });
-
-                    auctionEmbed.fields.push({
-                        name: 'Bidder',
-                        value: topBidder.username,
-                        inline: true
-                    });
-                } catch (e) {
-                    auctionEmbed.fields.push({
-                        name: 'Top Bid',
-                        value: `**${auction.highest_bid_amount.toLocaleString()} coins**`,
-                        inline: true
-                    });
-                }
-            } else {
+            if (auction.bin) {
                 auctionEmbed.fields.push({
-                    name: 'Starting Bid',
+                    name: 'Buy It Now',
                     value: auction.starting_bid.toLocaleString(),
                     inline: true
                 });
+            } else {
+                auctionEmbed.fields.push({
+                    name: 'Bids',
+                    value: auction.bids.length.toLocaleString(),
+                    inline: true
+                });
+
+                if (auction.bids.length > 0) {
+                    try {
+                        const topBidder = await UnifiedMojang.user(auction.bids[auction.bids.length - 1].bidder);
+
+                        auctionEmbed.fields.push({
+                            name: 'Top Bid',
+                            value: `**${auction.highest_bid_amount.toLocaleString()} coins**`,
+                            inline: true
+                        });
+
+                        auctionEmbed.fields.push({
+                            name: 'Bidder',
+                            value: topBidder.username,
+                            inline: true
+                        });
+                    } catch (e) {
+                        auctionEmbed.fields.push({
+                            name: 'Top Bid',
+                            value: `**${auction.highest_bid_amount.toLocaleString()} coins**`,
+                            inline: true
+                        });
+                    }
+                } else {
+                    auctionEmbed.fields.push({
+                        name: 'Starting Bid',
+                        value: auction.starting_bid.toLocaleString(),
+                        inline: true
+                    });
+                }
             }
 
             if (itemCount > 1) {
@@ -188,7 +198,7 @@ export default class extends Command {
             } else {
                 await reply.react(EMOJIS.STOP_BUTTON);
             }
-            if ((auctionEmbedDataArray[currentIndex].ends.getTime() - new Date().getTime()) > 10 * 60 * 1000) {
+            if (!auctionEmbedDataArray[currentIndex].bin && (auctionEmbedDataArray[currentIndex].ends.getTime() - new Date().getTime()) > 10 * 60 * 1000) {
                 await reply.react(EMOJIS.REMINDER);
             }
         })();
@@ -224,10 +234,10 @@ export default class extends Command {
                     break;
                 case EMOJIS.REMINDER:
                     const data = auctionEmbedDataArray[currentIndex];
-                    if ((data.ends.getTime() - new Date().getTime()) <= 10 * 60 * 1000) {
+                    if (data.bin || (data.ends.getTime() - new Date().getTime()) <= 10 * 60 * 1000) {
                         if (new Date().getTime() - reactionErrorDebounce >= 5000) {
                             reactionErrorDebounce = new Date().getTime();
-                            message.channel.send(`:no_entry: **|** ${message.author} I can't remind you for an auction that ends in less than 10 minutes!`).then(msg => {
+                            message.channel.send(`:no_entry: **|** ${message.author} I can't remind you for ${data.bin ? 'a buy it now auction' : 'an auction that ends in less than 10 minutes'}!`).then(msg => {
                                 msg.delete({timeout: 5000});
                             });
                         }
@@ -280,8 +290,12 @@ export default class extends Command {
             .setTitle(data.title)
             .setDescription(data.description);
 
-        if (endsIn10Minutes) {
-            embed.setColor('#B22222');
+        if (data.bin || endsIn10Minutes) {
+            if (data.bin && !endsIn10Minutes) {
+                embed.setColor('#3dc65d');
+            } else {
+                embed.setColor('#B22222');
+            }
             if (message) {
                 message.reactions.cache.forEach(reaction => {
                     if (reaction.emoji.name === EMOJIS.REMINDER) {
@@ -311,7 +325,7 @@ export default class extends Command {
         }
         embed.addField('Page', `${index + 1} of ${dataArr.length}`);
 
-        if (!endsIn10Minutes) {
+        if (!data.bin && !endsIn10Minutes) {
             embed.setFooter('React with alarm clock to get a reminder ~5 minutes from auction end.');
         }
 
