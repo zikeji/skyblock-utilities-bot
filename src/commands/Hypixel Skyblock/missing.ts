@@ -35,10 +35,6 @@ const talismans = [
         name: 'Vaccine Talisman'
     },
     {
-        id: 'SPEED_TALISMAN',
-        name: 'Speed Talisman'
-    },
-    {
         id: 'WOOD_TALISMAN',
         name: 'Wood Affinity Talisman'
     },
@@ -87,14 +83,6 @@ const talismans = [
         name: 'Fire Talisman'
     },
     {
-        id: 'BROKEN_PIGGY_BANK',
-        name: 'Broken Piggy Bank'
-    },
-    {
-        id: 'CRACKED_PIGGY_BANK',
-        name: 'Cracked Piggy Bank'
-    },
-    {
         id: 'PIGGY_BANK',
         name: 'Piggy Bank'
     },
@@ -105,10 +93,6 @@ const talismans = [
     {
         id: 'FROZEN_CHICKEN',
         name: 'Frozen Chicken'
-    },
-    {
-        id: 'SPEED_RING',
-        name: 'Speed Ring'
     },
     {
         id: 'FISH_AFFINITY_TALISMAN',
@@ -235,8 +219,10 @@ const talismans = [
 const tiered_talismans = {
     BAT_RING: ['BAT_ARTIFACT'],
     BAT_TALISMAN: ['BAT_RING', 'BAT_ARTIFACT'],
+    BROKEN_PIGGY_BANK: ['CRACKED_PIGGY_BANK', 'PIGGY_BANK'],
     CANDY_RING: ['CANDY_ARTIFACT'],
     CANDY_TALISMAN: ['CANDY_RING', 'CANDY_ARTIFACT'],
+    CRACKED_PIGGY_BANK: ['PIGGY_BANK'],
     CROOKED_ARTIFACT: ['SEAL_OF_THE_FAMILY'],
     FEATHER_RING: ['FEATHER_ARTIFACT'],
     FEATHER_TALISMAN: ['FEATHER_RING', 'FEATHER_ARTIFACT'],
@@ -251,8 +237,8 @@ const tiered_talismans = {
     SEA_CREATURE_RING: ['SEA_CREATURE_ARTIFACT'],
     SEA_CREATURE_TALISMAN: ['SEA_CREATURE_RING', 'SEA_CREATURE_ARTIFACT'],
     SHADY_RING: ['CROOKED_ARTIFACT', 'SEAL_OF_THE_FAMILY'],
-    // SPEED_TALISMAN: ['SPEED_RING', 'SPEED_ARTIFACT'],
-    // SPEED_RING: ['SPEED_ARTIFACT'],
+    SPEED_TALISMAN: ['SPEED_RING', 'SPEED_ARTIFACT'],
+    SPEED_RING: ['SPEED_ARTIFACT'],
     SPIDER_RING: ['SPIDER_ARTIFACT'],
     SPIDER_TALISMAN: ['SPIDER_RING', 'SPIDER_ARTIFACT'],
     WOLF_TALISMAN: ['WOLF_RING'],
@@ -383,7 +369,7 @@ export default class Missing extends Command {
                 description.push(`- ${talismanName}`);
             }
             description.push('');
-            description.push('Unnecessary accessories are accessories where you have a higher tier. As reforges no longer stack, lower tier accessories are unnecessary.');
+            description.push('Unnecessary accessories are accessories where you have a higher tier. As reforges don\'t stack, lower tier accessories are unnecessary.');
         }
 
         if (bestProfileTalisman.duplicates.length > 0) {
