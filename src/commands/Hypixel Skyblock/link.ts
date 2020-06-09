@@ -294,7 +294,7 @@ export default class Link extends Command {
             }
         }
 
-        await message.author.settings.update('minecraft.uuid', user.uuid);
+        await message.author.settings.update('minecraft.uuid', user.uuid.replace(/-/g, ''));
         await message.author.settings.update('minecraft.link_method', method);
         await message.author.settings.update('minecraft.link_datetime', new Date().getTime().toString(10));
 
