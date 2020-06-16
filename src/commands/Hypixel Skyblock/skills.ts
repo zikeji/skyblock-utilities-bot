@@ -111,6 +111,9 @@ export default class Skills extends Command {
         if (bestProfileSkills.api) {
             embed
                 .setDescription(`**Average Skill Level** (w/o progress)\n${bestProfileSkills.average}  (${bestProfileSkills.averageWithoutProgress})`);
+        } else {
+            embed
+                .setDescription(`**Average Skill Level** \n${bestProfileSkills.averageWithoutProgress}`);
         }
 
         for (const skill of [
@@ -132,7 +135,7 @@ export default class Skills extends Command {
                         `${Math.round((bestProfileSkills[skill[0]].progress * 100) * 100) / 100}% progress\n${AbbreviateNumber(bestProfileSkills[skill[0]].xpCurrent)} / ${AbbreviateNumber(bestProfileSkills[skill[0]].xpForNext)} XP` : 'Max Level',
 
                 ].join('\n'), true);
-            } else if (['carpentry', 'runecrafting', 'taming'].indexOf(skill[0]) === -1) {
+            } else if (['carpentry', 'runecrafting'].indexOf(skill[0]) === -1) {
                 embed.addField(`**${skill[2]}  ${skill[1]}**`, bestProfileSkills[skill[0]].level, true);
             }
         }
@@ -140,7 +143,7 @@ export default class Skills extends Command {
         if (bestProfileSkills.api) {
             embed.setFooter('Average does not include Carpentry & Runecrafting.');
         } else {
-            embed.setFooter('Please enable skills API to get skill average and accurate data.');
+            embed.setFooter('Please enable skills API to get an accurate skill average and more data.');
         }
 
         return message.send(message.author, {embed});

@@ -55,7 +55,7 @@ export class SkyblockSkills {
                 alchemy: SkillLeveling.getLevelByXp(player.achievements.skyblock_concoctor ? SkillLeveling.leveling_xp[player.achievements.skyblock_concoctor] : 0, false),
                 carpentry: SkillLeveling.getLevelByXp(0, false),
                 runecrafting: SkillLeveling.getLevelByXp(0, true),
-                taming: SkillLeveling.getLevelByXp(0, false)
+                taming: SkillLeveling.getLevelByXp(player.achievements.skyblock_domesticator ? SkillLeveling.leveling_xp[player.achievements.skyblock_domesticator] : 0, false)
             };
         }
         out.average = Math.round(((out.farming.levelProgress + out.mining.levelProgress + out.combat.levelProgress + out.foraging.levelProgress + out.fishing.levelProgress + out.enchanting.levelProgress + out.alchemy.levelProgress + out.taming.levelProgress) / 8) * 100) / 100;
