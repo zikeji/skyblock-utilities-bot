@@ -87,6 +87,10 @@ const talismans = [
         name: 'Piggy Bank'
     },
     {
+        id: 'PARTY_HAT_CRAB',
+        name: 'Crab Hat of Celebration'
+    },
+    {
         id: 'PIGS_FOOT',
         name: 'Pig\'s Foot'
     },
@@ -493,7 +497,7 @@ export default class Missing extends Command {
                     }
                     break;
                 default:
-                    if (i.tag.display.Lore[i.tag.display.Lore.length - 1].includes('ACCESSORY')) {
+                    if (i.tag.display.Lore[i.tag.display.Lore.length - 1].includes('ACCESSORY') || i.tag.display.Lore[i.tag.display.Lore.length - 1].includes('HATCCESSORY')) {
                         talismans.push(i);
                     }
                     break;
