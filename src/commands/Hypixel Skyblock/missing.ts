@@ -27,6 +27,10 @@ interface ParseProfileTalismansResponse {
 
 const talismans = [
     {
+        id: 'POTATO_TALISMAN',
+        name: 'Potato Talisman'
+    },
+    {
         id: 'FARMING_TALISMAN',
         name: 'Farming Talisman'
     },
