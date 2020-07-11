@@ -79,20 +79,8 @@ const talismans = [
         name: 'Scavenger Talisman'
     },
     {
-        id: 'WOLF_PAW',
-        name: 'Wolf Paw'
-    },
-    {
         id: 'FIRE_TALISMAN',
         name: 'Fire Talisman'
-    },
-    {
-        id: 'PIGGY_BANK',
-        name: 'Piggy Bank'
-    },
-    {
-        id: 'PARTY_HAT_CRAB',
-        name: 'Crab Hat of Celebration'
     },
     {
         id: 'PIGS_FOOT',
@@ -106,129 +94,145 @@ const talismans = [
         id: 'CHEETAH_TALISMAN',
         name: 'Cheetah Talisman'
     },
-    {
+    { // 50k
         id: 'FISH_AFFINITY_TALISMAN',
         name: 'Fish Affinity Talisman'
     },
-    {
-        id: 'FARMER_ORB',
-        name: 'Farmer Orb'
-    },
-    {
-        id: 'HASTE_RING',
-        name: 'Haste Ring'
-    },
-    {
-        id: 'NEW_YEAR_CAKE_BAG',
-        name: 'New Year Cake Bag'
-    },
-    {
-        id: 'NIGHT_CRYSTAL',
-        name: 'Night Crystal'
-    },
-    {
-        id: 'DAY_CRYSTAL',
-        name: 'Day Crystal'
-    },
-    {
+    { // 50k
         id: 'FEATHER_ARTIFACT',
         name: 'Feather Artifact'
     },
-    {
-        id: 'ARTIFACT_POTION_AFFINITY',
-        name: 'Potion Affinity Artifact'
+    { // 60k
+        id: 'PIGGY_BANK',
+        name: 'Piggy Bank'
     },
-    {
+    { // 80k
+        id: 'FARMER_ORB',
+        name: 'Farmer Orb'
+    },
+    { // 100k
         id: 'HEALING_RING',
         name: 'Healing Ring'
     },
-    {
+    { // 100k
+        id: 'WOLF_PAW',
+        name: 'Wolf Paw'
+    },
+    { // 250k
+        id: 'HASTE_RING',
+        name: 'Haste Ring'
+    },
+    { // 250k
+        id: 'NEW_YEAR_CAKE_BAG',
+        name: 'New Year Cake Bag'
+    },
+    { // 300k
+        id: 'DAY_CRYSTAL',
+        name: 'Day Crystal'
+    },
+    { // 300k
+        id: 'NIGHT_CRYSTAL',
+        name: 'Night Crystal'
+    },
+    { // 350k
+        id: 'ARTIFACT_POTION_AFFINITY',
+        name: 'Potion Affinity Artifact'
+    },
+    { // 450k
         id: 'CANDY_ARTIFACT',
         name: 'Candy Artifact'
     },
-    {
-        id: 'EXPERIENCE_ARTIFACT',
-        name: 'Experience Artifact'
-    },
-    {
+    { // 500k
         id: 'MELODY_HAIR',
         name: '♪ Melody\'s Hair ♫'
     },
-    {
+    { // 500k
+        id: 'PARTY_HAT_CRAB',
+        name: 'Crab Hat of Celebration'
+    },
+    { // 550k
         id: 'SEA_CREATURE_ARTIFACT',
         name: 'Sea Creature Artifact'
     },
-    {
-        id: 'INTIMIDATION_ARTIFACT',
-        name: 'Intimidation Artifact'
+    { // 800k
+        id: 'EXPERIENCE_ARTIFACT',
+        name: 'Experience Artifact'
     },
-    {
-        id: 'WOLF_RING',
-        name: 'Wolf Ring'
-    },
-    {
+    { // 1m
         id: 'BAT_ARTIFACT',
         name: 'Bat Artifact'
     },
-    {
+    { // 1m
+        id: 'WOLF_RING',
+        name: 'Wolf Ring'
+    },
+    { // 1.1m
+        id: 'INTIMIDATION_ARTIFACT',
+        name: 'Intimidation Artifact'
+    },
+    { // 1.5m
         id: 'DEVOUR_RING',
         name: 'Devour Ring'
     },
-    {
+    { // 1.5m
         id: 'ZOMBIE_ARTIFACT',
         name: 'Zombie Artifact'
     },
-    {
-        id: 'SPIDER_ARTIFACT',
-        name: 'Spider Artifact'
-    },
-    {
-        id: 'ENDER_ARTIFACT',
-        name: 'Ender Artifact'
-    },
-    {
-        id: 'PERSONAL_COMPACTOR_6000',
-        name: 'Personal Compactor 6000'
-    },
-    {
-        id: 'TARANTULA_TALISMAN',
-        name: 'Tarantula Talisman'
-    },
-    {
+    { // 1.5m
         id: 'SURVIVOR_CUBE',
         name: 'Survivor Cube'
     },
-    {
-        id: 'WITHER_ARTIFACT',
-        name: 'Wither Artifact'
+    { // 3.5m
+        id: 'SPEED_ARTIFACT',
+        name: 'Speed Artifact'
     },
-    {
-        id: 'WEDDING_RING_9',
-        name: 'Legendary Ring of Love'
+    { // 3.5m
+        id: 'SPIDER_ARTIFACT',
+        name: 'Spider Artifact'
     },
-    {
+    { // 4m
+        id: 'PERSONAL_COMPACTOR_6000',
+        name: 'Personal Compactor 6000'
+    },
+    { // 5.5m
+        id: 'TARANTULA_TALISMAN',
+        name: 'Tarantula Talisman'
+    },
+    { // 8m
         id: 'RED_CLAW_ARTIFACT',
         name: 'Red Claw Artifact'
     },
-    {
-        id: 'BAIT_RING',
-        name: 'Bait Ring'
+    { // 12m
+        id: 'ENDER_ARTIFACT',
+        name: 'Ender Artifact'
     },
-    {
-        id: 'SEAL_OF_THE_FAMILY',
-        name: 'Seal of the Family'
-    },
-    {
-        id: 'HUNTER_RING',
-        name: 'Hunter Ring'
-    },
-    {
+    { // 13m
         id: /CAMPFIRE_TALISMAN_2[1-9]/,
         name: 'Campfire God Badge'
     },
-    {
-        id: 'SPEED_ARTIFACT',
-        name: 'Speed Artifact'
+    { // 14m
+        id: 'BAIT_RING',
+        name: 'Bait Ring'
+    },
+    { // 14m
+        id: 'WITHER_ARTIFACT',
+        name: 'Wither Artifact'
+    },
+    { // 15m
+        id: 'WEDDING_RING_9',
+        name: 'Legendary Ring of Love'
+    },
+    { // 25m
+        id: 'HUNTER_RING',
+        name: 'Hunter Ring'
+    },
+    { // 25m
+        id: 'SCARF_GRIMOIRE',
+        name: "Scarf's Grimoire"
+    },
+    { // 45m
+        id: 'SEAL_OF_THE_FAMILY',
+        name: 'Seal of the Family'
     }
 ];
 
@@ -253,6 +257,8 @@ const tiered_talismans = {
     PERSONAL_COMPACTOR_5000: ['PERSONAL_COMPACTOR_6000'],
     RED_CLAW_RING: ['RED_CLAW_ARTIFACT'],
     RED_CLAW_TALISMAN: ['RED_CLAW_RING', 'RED_CLAW_ARTIFACT'],
+    SCARF_STUDIES: ['SCARF_GRIMOIRE'],
+    SCARF_THESIS: ['SCARF_STUDIES', 'SCARF_GRIMOIRE'],
     RING_POTION_AFFINITY: ['ARTIFACT_POTION_AFFINITY'],
     SEA_CREATURE_RING: ['SEA_CREATURE_ARTIFACT'],
     SEA_CREATURE_TALISMAN: ['SEA_CREATURE_RING', 'SEA_CREATURE_ARTIFACT'],
