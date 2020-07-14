@@ -163,6 +163,10 @@ const talismans = [
         name: 'Bat Artifact'
     },
     { // 1m
+        id: 'SCARF_STUDIES',
+        name: "Scarf's Studies"
+    },
+    { // 1m
         id: 'WOLF_RING',
         name: 'Wolf Ring'
     },
@@ -193,6 +197,10 @@ const talismans = [
     { // 4m
         id: 'PERSONAL_COMPACTOR_6000',
         name: 'Personal Compactor 6000'
+    },
+    { // 4m
+        id: 'SCARF_THESIS',
+        name: "Scarf's Thesis"
     },
     { // 5.5m
         id: 'TARANTULA_TALISMAN',
@@ -257,8 +265,8 @@ const tiered_talismans = {
     PERSONAL_COMPACTOR_5000: ['PERSONAL_COMPACTOR_6000'],
     RED_CLAW_RING: ['RED_CLAW_ARTIFACT'],
     RED_CLAW_TALISMAN: ['RED_CLAW_RING', 'RED_CLAW_ARTIFACT'],
-    SCARF_STUDIES: ['SCARF_GRIMOIRE'],
-    SCARF_THESIS: ['SCARF_STUDIES', 'SCARF_GRIMOIRE'],
+    SCARF_THESIS: ['SCARF_GRIMOIRE'],
+    SCARF_STUDIES: ['SCARF_THESIS', 'SCARF_GRIMOIRE'],
     RING_POTION_AFFINITY: ['ARTIFACT_POTION_AFFINITY'],
     SEA_CREATURE_RING: ['SEA_CREATURE_ARTIFACT'],
     SEA_CREATURE_TALISMAN: ['SEA_CREATURE_RING', 'SEA_CREATURE_ARTIFACT'],
