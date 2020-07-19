@@ -3,6 +3,9 @@ import {SkyBlockZUtilitiesClient} from "./lib/structures/SkyBlockZUtilitiesClien
 const client = new SkyBlockZUtilitiesClient({
     commandEditing: true,
     commandLogging: process.env.COMMAND_LOGGING === 'yes',
+    console: {
+        useColor: process.env.CONSOLE_USE_COLOR === 'yes'
+    },
     fetchAllMembers: false,
     prefix: 'sb',
     prefixCaseInsensitive: true,

@@ -16,5 +16,6 @@ declare namespace NodeJS {
         TOPGG_API_TOKEN: string;
         COMMAND_LOGGING: "yes" | "no";
         QUERY_LOGGING: "yes" | "no";
+        CONSOLE_USE_COLOR: "yes" | "no";
     }
 }
