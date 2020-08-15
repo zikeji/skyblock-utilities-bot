@@ -241,6 +241,10 @@ const talismans = [
     { // 45m
         id: 'SEAL_OF_THE_FAMILY',
         name: 'Seal of the Family'
+    },
+    { // 100m
+        id: 'TREASURE_ARTIFACT',
+        name: 'Treasure Artifact'
     }
 ];
 
@@ -275,6 +279,8 @@ const tiered_talismans = {
     SPEED_RING: ['SPEED_ARTIFACT'],
     SPIDER_RING: ['SPIDER_ARTIFACT'],
     SPIDER_TALISMAN: ['SPIDER_RING', 'SPIDER_ARTIFACT'],
+    // TREASURE_RING: ['TREASURE_ARTIFACT'],
+    // TREASURE_TALISMAN: ['TREASURE_RING', 'TREASURE_ARTIFACT'],
     WOLF_TALISMAN: ['WOLF_RING'],
     ZOMBIE_RING: ['ZOMBIE_ARTIFACT'],
     ZOMBIE_TALISMAN: ['ZOMBIE_RING', 'ZOMBIE_ARTIFACT']
