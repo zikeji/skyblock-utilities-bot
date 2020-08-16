@@ -201,7 +201,7 @@ export default class extends Command {
             if (!auctionEmbedDataArray[currentIndex].bin && (auctionEmbedDataArray[currentIndex].ends.getTime() - new Date().getTime()) > 10 * 60 * 1000) {
                 await reply.react(EMOJIS.REMINDER);
             }
-        })();
+        })().catch(this.client.console.error);
         const collector = reply.createReactionCollector((reaction, user) => user.id === message.author.id && !user.bot && Object.values(EMOJIS).includes(reaction.emoji.name), {time: 5 * 6e4});
         collector.on('collect', async (reaction, reactionUser) => {
             if (message.channel instanceof TextChannel && message.channel.permissionsFor(this.client.user).has(['MANAGE_MESSAGES'], false)) {
