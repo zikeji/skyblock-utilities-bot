@@ -3,6 +3,7 @@ import {cache} from "../../cache";
 import {Command, CommandStore, KlasaMessage} from "klasa";
 import {UnifiedMojang} from "../../lib/thirdparty/UnifiedMojang";
 import {UnifiedMojangResponse} from "../../lib/thirdparty/UnifiedMojang/interfaces/response";
+import AddShutdownNotice from '../../lib/util/AddShutdownNotice';
 import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
 import {MessageEmbed} from "discord.js";
 import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
@@ -54,7 +55,8 @@ export default class extends Command {
         }, {ttl: 120});
 
         const embed = new MessageEmbed()
-            .setThumbnail(`https://visage.surgeplay.com/full/128/${user.uuid}`);
+            .setThumbnail(`https://visage.surgeplay.com/full/128/${user.uuid}`)
+            .setFooter(AddShutdownNotice());
 
         if (scammerList[user.uuid]) {
             embed

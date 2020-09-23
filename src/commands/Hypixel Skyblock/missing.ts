@@ -5,6 +5,7 @@ import {UnifiedMojangResponse} from "../../lib/thirdparty/UnifiedMojang/interfac
 import {HypixelPlayer} from "../../lib/thirdparty/Hypixel/classes/Player";
 import {NoPlayerDataError} from "../../lib/thirdparty/Hypixel/methods/player";
 import {SkyblockProfileResponse} from "../../lib/thirdparty/Hypixel/interfaces/SkyBlock/profile";
+import AddShutdownNotice from '../../lib/util/AddShutdownNotice';
 import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
 import {NBT} from "@xmcl/nbt";
 import * as TurndownService from "turndown";
@@ -427,9 +428,9 @@ export default class Missing extends Command {
         }
 
         if (specificProfile) {
-            embed.setFooter(`Data is for profile "${bestProfileTalisman.cuteName}".`);
+            embed.setFooter(AddShutdownNotice(`Data is for profile "${bestProfileTalisman.cuteName}".`));
         } else {
-            embed.setFooter(`Selected profile "${bestProfileTalisman.cuteName}" as it had the least missing accessories.`);
+            embed.setFooter(AddShutdownNotice(`Selected profile "${bestProfileTalisman.cuteName}" as it had the least missing accessories.`));
         }
 
         return message.send(message.author, {embed});

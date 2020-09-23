@@ -1,6 +1,7 @@
 import {Command, CommandStore, KlasaGuild, KlasaMessage} from "klasa";
 import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
 import {MessageEmbed, Permissions, Role} from "discord.js";
+import AddShutdownNotice from '../../lib/util/AddShutdownNotice';
 
 export default class extends Command {
     readonly client: SkyBlockZUtilitiesClient;
@@ -64,6 +65,7 @@ export default class extends Command {
                         .setDescription('We scanned your server members and applied the role to users missing it as well as removed it from users who aren\'t linked and had the role.')
                         .addField('Added', results.added, true)
                         .addField('Removed', results.removed, true)
+                        .setFooter(AddShutdownNotice())
                 );
             }
             case 'show': {
@@ -74,6 +76,7 @@ export default class extends Command {
                         .setDescription('The following is your configuration of the linked role on this server.')
                         .addField('Role', linkedRole ? linkedRole : 'Not Set', true)
                         .addField('Linked Users', linkedRole ? message.guild.members.cache.filter(m => m.roles.cache.has(linkedRole.id)).size : 'n/a', true)
+                        .setFooter(AddShutdownNotice())
                 );
             }
         }

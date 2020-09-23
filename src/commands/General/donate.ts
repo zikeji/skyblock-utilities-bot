@@ -1,6 +1,7 @@
 import {Command, KlasaMessage, CommandStore} from "klasa";
 import {MessageEmbed} from "discord.js";
 import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
+import AddShutdownNotice from '../../lib/util/AddShutdownNotice';
 
 export default class extends Command {
     readonly client: SkyBlockZUtilitiesClient;
@@ -18,15 +19,14 @@ export default class extends Command {
         return message.send(
             new MessageEmbed()
                 .setColor('#FF5E5B')
-                .setThumbnail('https://uploads-ssl.webflow.com/5c14e387dab576fe667689cf/5ca5bf1dff3c03fbf7cc9b3c_Kofi_logo_RGB_rounded-p-500.png')
                 .setTitle(`Support SkyBlockZ Utilities`)
-                .setURL('https://ko-fi.com/zikeji')
                 .setDescription([
-                    `While I'm more than capable of supporting myself, if you'd like to support my work you can [buy me a coffee](https://ko-fi.com/zikeji)!`,
+                    `I appreciate the thought.`,
                     ``,
                     `Thanks!`,
                     `-Zikeji#9453`
                 ].join('\n'))
+                .setFooter(AddShutdownNotice())
         );
     }
 

@@ -1,6 +1,7 @@
 import {Command, CommandStore, KlasaMessage} from "klasa";
 import {MessageEmbed} from "discord.js";
 import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
+import AddShutdownNotice from '../../lib/util/AddShutdownNotice';
 
 export default class extends Command {
     readonly client: SkyBlockZUtilitiesClient;
@@ -17,11 +18,11 @@ export default class extends Command {
         return message.send(
             new MessageEmbed()
                 .setColor('#5f5ac6')
-                .setAuthor(`Invite SkyBlockZ Utilities to your server.`, this.client.user.avatarURL(), 'https://discordapp.com/oauth2/authorize?client_id=707857251536470067&permissions=347200&scope=bot')
+                .setAuthor(`Invite SkyBlockZ Utilities to your server.`, this.client.user.avatarURL())
                 .setDescription([
-                    `Thanks for showing interest in inviting my bot! You can invite it using the link below. Thank you for showing your support!`,
-                    '',
-                    `[Invite ${this.client.user.username} to your server!](https://discordapp.com/oauth2/authorize?client_id=707857251536470067&permissions=347200&scope=bot)`
-                ].join('\n')));
+                    `Thanks for showing interest in inviting my bot! Unfortunately as I am being shut down soon inviting me probably isn't a good idea.`
+                ].join('\n'))
+                .setFooter(AddShutdownNotice())
+        );
     }
 };

@@ -6,6 +6,7 @@ import {UnifiedMojangResponse} from "../../lib/thirdparty/UnifiedMojang/interfac
 import {HypixelPlayer} from "../../lib/thirdparty/Hypixel/classes/Player";
 import {NoPlayerDataError} from "../../lib/thirdparty/Hypixel/methods/player";
 import {SkyblockProfile, SkyblockProfileResponse} from "../../lib/thirdparty/Hypixel/interfaces/SkyBlock/profile";
+import AddShutdownNotice from '../../lib/util/AddShutdownNotice';
 import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
 import {SkillData, SkyblockSkills} from "../../lib/util/Hypixel/SkyBlock/Skills";
 import {AbbreviateNumber} from "../../lib/util/AbbreviateNumber";
@@ -141,9 +142,9 @@ export default class Skills extends Command {
         }
 
         if (bestProfileSkills.api) {
-            embed.setFooter('Average does not include Carpentry & Runecrafting.');
+            embed.setFooter(AddShutdownNotice('Average does not include Carpentry & Runecrafting.'));
         } else {
-            embed.setFooter('Please enable skills API to get an accurate skill average and more data.');
+            embed.setFooter(AddShutdownNotice('Please enable skills API to get an accurate skill average and more data.'));
         }
 
         return message.send(message.author, {embed});

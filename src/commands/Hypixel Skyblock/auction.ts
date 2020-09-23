@@ -8,6 +8,7 @@ import * as TurndownService from "turndown";
 import {AuctionItem} from "../../lib/thirdparty/Hypixel/interfaces/SkyBlock/auction";
 import {UnifiedMojang} from "../../lib/thirdparty/UnifiedMojang";
 import {UnifiedMojangResponse} from "../../lib/thirdparty/UnifiedMojang/interfaces/response";
+import AddShutdownNotice from '../../lib/util/AddShutdownNotice';
 import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
 import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
 
@@ -288,7 +289,8 @@ export default class extends Command {
 
         const embed = new MessageEmbed()
             .setTitle(data.title)
-            .setDescription(data.description);
+            .setDescription(data.description)
+            .setFooter(AddShutdownNotice());
 
         if (data.bin || endsIn10Minutes) {
             if (data.bin && !endsIn10Minutes) {
@@ -326,7 +328,7 @@ export default class extends Command {
         embed.addField('Page', `${index + 1} of ${dataArr.length}`);
 
         if (!data.bin && !endsIn10Minutes) {
-            embed.setFooter('React with alarm clock to get a reminder ~5 minutes from auction end.');
+            embed.setFooter(AddShutdownNotice('React with alarm clock to get a reminder ~5 minutes from auction end.'));
         }
 
         embed.setTimestamp(data.ends);

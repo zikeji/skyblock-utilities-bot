@@ -1,6 +1,7 @@
 import {Command, KlasaMessage, CommandStore} from "klasa";
 import {MessageEmbed} from "discord.js";
 import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
+import AddShutdownNotice from '../../lib/util/AddShutdownNotice';
 
 
 export default class extends Command {
@@ -23,6 +24,7 @@ export default class extends Command {
                 .setDescription([
                     "If you're running into trouble, have a complaint, want to make a suggestion, or simply want to leave a compliment, please visit our [support server](https://discord.gg/QkcGHwG)."
                 ].join('\n'))
+                .setFooter(AddShutdownNotice())
         );
     }
 

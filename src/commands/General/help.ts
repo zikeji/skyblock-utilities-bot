@@ -2,6 +2,7 @@
 import {CommandStore, KlasaMessage, Command, RichDisplay, util, ReactionHandler} from "klasa";
 import {DMChannel, MessageEmbed, Permissions, TextChannel} from "discord.js";
 import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
+import AddShutdownNotice from '../../lib/util/AddShutdownNotice';
 
 const isFunction = util.isFunction;
 
@@ -44,6 +45,7 @@ export default class extends Command {
                             '**Extended Help**',
                             (isFunction(command.extendedHelp) ? command.extendedHelp(message.language) : command.extendedHelp).replace(/\[PREFIX_COMMAND]/g, this.client.prefixCommand(command, message))
                         ].join('\n'))
+                        .setFooter(AddShutdownNotice())
                 );
             } else {
                 return message.send([
@@ -94,12 +96,14 @@ export default class extends Command {
     async buildDisplay(message: KlasaMessage) {
         const commands = await this._fetchCommands(message);
         const display = new RichDisplay();
+        display.useCustomFooters();
         const color = message.member ? message.member.displayColor : '#5f5ac6';
         for (const [category, list] of commands) {
             display.addPage(new MessageEmbed()
                 .setTitle(`${category} Commands`)
                 .setColor(color)
                 .setDescription(list.map(this.formatCommand.bind(this, message, true)).join('\n'))
+                .setFooter(AddShutdownNotice())
             );
         }
 

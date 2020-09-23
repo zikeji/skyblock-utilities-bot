@@ -2,6 +2,7 @@ import {Command, CommandStore, KlasaMessage} from "klasa";
 import {Craftlink} from "../../lib/thirdparty/Craftlink";
 import {MessageEmbed} from "discord.js";
 import {ItemsListResponse} from "../../lib/thirdparty/Craftlink/interfaces/itemsList";
+import AddShutdownNotice from '../../lib/util/AddShutdownNotice';
 import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
 import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
 
@@ -65,7 +66,7 @@ export default class ItemCommand extends Command {
         }
 
         if (iterations > 5) {
-            embed.setFooter('We found more results. Please make your query more concise if your request is missing.');
+            embed.setFooter(AddShutdownNotice('We found more results. Please make your query more concise if your request is missing.'));
         }
 
         return message.send(message.author, {embed});

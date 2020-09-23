@@ -6,6 +6,7 @@ import {UnifiedMojangResponse} from "../../lib/thirdparty/UnifiedMojang/interfac
 import {HypixelPlayer} from "../../lib/thirdparty/Hypixel/classes/Player";
 import {NoPlayerDataError} from "../../lib/thirdparty/Hypixel/methods/player";
 import {SkyblockProfile, SkyblockProfileResponse} from "../../lib/thirdparty/Hypixel/interfaces/SkyBlock/profile";
+import AddShutdownNotice from '../../lib/util/AddShutdownNotice';
 import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
 import {SlayerLeveling} from "../../lib/util/Hypixel/SkyBlock/SlayerLeveling";
 import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
@@ -107,7 +108,8 @@ export default class extends Command {
         const embed = new MessageEmbed()
             .setColor('#5f5ac6')
             .setAuthor(`${user.username} on "${cuteName}"`, `https://visage.surgeplay.com/face/128/${user.uuid}`, `https://sky.lea.moe/stats/${user.username}/${cuteName}`)
-            .setThumbnail(`https://visage.surgeplay.com/full/128/${user.uuid}`);
+            .setThumbnail(`https://visage.surgeplay.com/full/128/${user.uuid}`)
+            .setFooter(AddShutdownNotice());
 
         let description = [];
         let totalXp = 0;

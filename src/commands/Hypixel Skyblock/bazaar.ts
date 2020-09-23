@@ -2,6 +2,7 @@ import {Command, CommandStore, KlasaMessage} from "klasa";
 import {HypixelApi} from "../../lib/thirdparty/Hypixel";
 import {MessageEmbed} from "discord.js";
 import {ProductResponse} from "../../lib/thirdparty/Hypixel/interfaces/SkyBlock/bazaar";
+import AddShutdownNotice from '../../lib/util/AddShutdownNotice';
 import {RandomLoadingMessage} from "../../lib/util/RandomLoadingMessage";
 import {AbbreviateNumber} from "../../lib/util/AbbreviateNumber";
 import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
@@ -73,7 +74,7 @@ export default class BazaarCommand extends Command {
         }
 
         embed.setDescription(description.join('\n'));
-        embed.setFooter('Note: Information is based on the latest buy and sell orders in-game and may not be accurate.');
+        embed.setFooter(AddShutdownNotice('Note: Information is based on the latest buy and sell orders in-game and may not be accurate.'));
 
         return message.send(message.author, {embed});
     }

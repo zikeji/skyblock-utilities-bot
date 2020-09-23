@@ -2,6 +2,7 @@ import {version as botVersion} from "../../../package.json";
 import {Command, version as klasaVersion, Duration, KlasaMessage, CommandStore} from "klasa";
 import {MessageEmbed, version as discordVersion} from "discord.js";
 import {SkyBlockZUtilitiesClient} from "../../lib/structures/SkyBlockZUtilitiesClient";
+import AddShutdownNotice from '../../lib/util/AddShutdownNotice';
 
 export default class extends Command {
     readonly client: SkyBlockZUtilitiesClient;
@@ -45,7 +46,7 @@ export default class extends Command {
                 .addField('CPM', `${cpm.toLocaleString()}`, true)
                 .addField('_ _', `_ _`, true)
 
-                .setFooter(`Klasa v${klasaVersion} | Discord.js v${discordVersion} | Node.js ${process.version}`)
+                .setFooter(AddShutdownNotice(`Klasa v${klasaVersion} | Discord.js v${discordVersion} | Node.js ${process.version}`))
                 .setTimestamp()
         );
     }
